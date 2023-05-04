@@ -9,15 +9,16 @@ int main()
 
     while (!unlocked)
     {
-        std::cout << " _________   " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|    O    |  " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|         |  " << std::endl;
-        std::cout << "|_________|  " << std::endl;
+        std::cout << " ___________________ " << std::endl;
+        std::cout << "|                   |" << std::endl;
+        std::cout << "|   _________       |" << std::endl;
+        std::cout << "|  |         |      |" << std::endl;
+        std::cout << "|  |    O    |      |" << std::endl;
+        std::cout << "|  |         |      |" << std::endl;
+        std::cout << "|  |         |      |" << std::endl;
+        std::cout << "|  |         |      |" << std::endl;
+        std::cout << "|  |         |      |" << std::endl;
+        std::cout << "|__|_________|______|" << std::endl;
 
         std::cout << "Enter the password (6 characters): ";
         std::cin >> input;
