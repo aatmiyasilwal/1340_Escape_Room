@@ -1,7 +1,3 @@
-// MAKE THE CODE ERROR PROOF
-// GIVE TWO LETTERS AT THE END 
-// MAKE CODE BETTER IF POSSIBLE
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -102,4 +98,15 @@ int main()
         }
         else
         {
-            cout
+            cout << "No match." << endl;
+        }
+    }
+
+    // Print the final state of the grid
+    printGrid(grid, revealed);
+
+    // Print the results
+    cout << "Congratulations! You won in " << numAttempts << " attempts." << endl;
+
+    return 0;
+}
