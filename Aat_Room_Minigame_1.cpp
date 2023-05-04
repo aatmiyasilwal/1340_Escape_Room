@@ -141,6 +141,7 @@ void characterAllocation(vector<vector<string> >& board){
     }
 }
 
+//function that checks whether the game has ended and returns a boolean
 bool end_check(vector<vector<string> >& board){
     if (player_row == treasure_row && player_col == treasure_col){
         system("clear");
@@ -161,6 +162,7 @@ bool end_check(vector<vector<string> >& board){
     }
 }
 
+//implementation of cyclic player movement
 void movePlayer(vector<vector<string> >& board, string move){
     board[player_row][player_col] = blank_char;
     move = toupper(move[0]);
@@ -180,6 +182,7 @@ void movePlayer(vector<vector<string> >& board, string move){
     board[player_row][player_col] = user_char;
 }
 
+//main function
 int main() {
     while (true){
         gameOver = false;
@@ -193,6 +196,7 @@ int main() {
         displayBoard(board);
         while (true){
             while (true){
+                //prompt to move the character
                 string move;
                 cout << "Enter where you want to move (W/A/S/D): ";
                 cin >> move;
@@ -201,6 +205,7 @@ int main() {
                     break;
                 }
             }
+            //checking for gameOver possibilities
             gameOver = end_check(board);
             if (gameOver){
                 break;
@@ -224,6 +229,7 @@ int main() {
                 cout << "You collected coin # " << coin_count << "!" << endl;
             }
             
+            //implementation of powerups into this game
             if (coin_count == 2 && !perk_purchased){
                 char user_choice;
                 if (!monster_activate){
@@ -241,6 +247,7 @@ int main() {
             }
             displayBoard(board);
         }
+        //check to see if the player has won or lost
         if (win_lose){
             break;        
         }
