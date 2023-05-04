@@ -1,112 +1,113 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-// Function to generate a shuffled grid of DC comics characters
-vector<string> generateGrid()
+// DC comic book characters
+const vector<string> DC_CHARACTERS = {"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
+
+// function to shuffle the DC comic book characters
+void shuffle_characters(vector<string>& characters)
 {
-    vector<string> characters = {"Batman", "Superman", "Wonder Woman", "Aquaman", "Flash", "Green Lantern", "Cyborg", "Martian Manhunter"};
-    vector<string> grid;
-
-    // Duplicate each character to create pairs
-    for (int i = 0; i < characters.size(); i++)
-    {
-        grid.push_back(characters[i]);
-        grid.push_back(characters[i]);
-    }
-
-    // Shuffle the grid using a random number generator
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    shuffle(grid.begin(), grid.end(), default_random_engine(seed));
-
-    return grid;
-}
-
-// Function to print the current state of the grid
-void printGrid(vector<string> grid, vector<bool> revealed)
-{
-    for (int i = 0; i < grid.size(); i++)
-    {
-        if (revealed[i])
-        {
-            cout << grid[i] << " ";
-        }
-        else
-        {
-            cout << "X ";
-        }
-
-        if ((i + 1) % 4 == 0)
-        {
-            cout << endl;
-        }
-    }
-}
-
-// Function to check if two cards match
-bool matchCards(vector<string> grid, int index1, int index2)
-{
-    return grid[index1] == grid[index2];
+    shuffle(characters.begin(), characters.end(), default_random_engine(seed));
 }
 
 int main()
 {
-    vector<string> grid = generateGrid();
-    vector<bool> revealed(grid.size(), false);
+    // Prompt user to pick the lock
+    cout << "Welcome to the Memory mini game!\n\n";
+    cout << "INSTRUCTIONS:\n";
+    cout << "- 16 X spots on screen, with 8 unique DC character pairs.\n";
+    cout << "- Enter a number (0-15) to flip a card.\n";
+    cout << "- Incorrect guesses show the cards briefly. Remember them.\n";
+    cout << "- Correct guesses reveal the cards on the 4x4 game board.\n";
+    cout << "- Find all 8 pairs to win!\n\n";
 
-    int numMatches = 0;
-    int numAttempts = 0;
+    // initialize the game board
+    const int ROWS = 4;
+    const int COLS = 4;
+    const int NUM_CARDS = ROWS * COLS;
+    vector<string> game_board(NUM_CARDS);
 
-    cout << "Welcome to the DC comics memory game!" << endl;
-    cout << "Match pairs of DC comics characters to win." << endl;
-    cout << "Enter two card positions (e.g. 1 2):" << endl;
-
-    // Main game loop
-    while (numMatches < grid.size() / 2)
+    // populate the game board with DC comic book characters
+    int character_index = 0;
+    for (int i = 0; i < NUM_CARDS; i += 2)
     {
-        // Print the current state of the grid
-        printGrid(grid, revealed);
-
-        // Prompt the user for input
-        int index1, index2;
-        cin >> index1 >> index2;
-
-        // Check if the user's input is valid
-        if (index1 < 1 || index1 > grid.size() || index2 < 1 || index2 > grid.size() || index1 == index2 || revealed[index1-1] || revealed[index2-1])
-        {
-            cout << "Invalid input. Please enter two different card positions (e.g. 1 2)." << endl;
-            continue;
-        }
-
-        // Increment the number of attempts
-        numAttempts++;
-
-        // Reveal the selected cards
-        revealed[index1-1] = true;
-        revealed[index2-1] = true;
-
-        // Check if the selected cards match
-        if (matchCards(grid, index1-1, index2-1))
-        {
-            cout << "Match!" << endl;
-            numMatches++;
-        }
-        else
-        {
-            cout << "No match." << endl;
-        }
+        game_board[i] = DC_CHARACTERS[character_index];
+        game_board[i+1] = DC_CHARACTERS[character_index];
+        character_index++;
     }
 
-    // Print the final state of the grid
-    printGrid(grid, revealed);
+    // shuffle the DC comic book characters on the game board
+    shuffle_characters(game_board);
 
-    // Print the results
-    cout << "Congratulations! You won in " << numAttempts << " attempts." << endl;
+    // initialize the game state
+    vector<bool> card_flipped(NUM_CARDS, false);
+    int num_matches_found = 0;
+    int num_attempts = 0;
+
+    // main game loop
+    while (num_matches_found < NUM_CARDS / 2)
+    {
+        // display the game board
+        for (int i = 0; i < NUM_CARDS; i++)
+        {
+            if (card_flipped[i])
+            {
+                cout << game_board[i] << "\t";
+            }
+            else
+            {
+                cout << "X\t";
+            }
+            if ((i + 1) % COLS == 0)
+            {
+                cout << endl;
+            }
+        }
+
+        // get user input for flipping cards
+        int card1, card2;
+        do
+        {
+            cout << "Enter two card numbers to flip (0-" << NUM_CARDS - 1 << "): ";
+            cin >> card1 >> card2;
+
+            // flip the selected cards
+            card_flipped[card1] = true;
+            card_flipped[card2] = true;
+
+            // display the selected cards
+            cout << game_board[card1] << "\t" << game_board[card2] << endl;
+
+            // check for a match
+            if (game_board[card1] == game_board[card2])
+            {
+                num_matches_found++;
+                cout << "Match found!" << endl;
+            }
+            else
+            {
+                cout << "No match found." << endl;
+                // close the cards if they don't match
+                card_flipped[card1] = false;
+                card_flipped[card2] = false;
+            }
+
+            num_attempts++;
+        } while (game_board[card1] != game_board[card2]);
+
+    }
+
+    // display the final game state
+    cout << "Congratulations, you found all the matches in " << num_attempts << " attempts!" << endl;
+    cout << "Your two letters are: B & T" << endl;
 
     return 0;
 }
