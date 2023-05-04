@@ -17,12 +17,12 @@ int main() {
 
     // Prompt user to pick the lock
     cout << "Welcome to the lock picking mini game!\n\n";
-    cout << "INSTRUCTIONS (READ CAREFULLY)\n";
-    cout << "Guess the combination of a " << NUM_DIGITS << " digit lock by entering 4 digits separated by space.\n";
-    cout << "The system will check only the first digit initially.\n";
-    cout << "If it's correct, you will feel a notch and you will see a # in the interactive lock.\n";
-    cout << "Keep the first digit the same and proceed to the second digit.\n";
-    cout << "Repeat the process until all 4 digits are guessed correctly to unlock the lock.\n\n";
+    cout << "INSTRUCTIONS:\n";
+    cout << "- Guess the combination of a " << NUM_DIGITS << " digit lock by entering 4 digits separated by space.\n";
+    cout << "- The system will check only the first digit initially.\n";
+    cout << "- If it's correct, you will feel a notch and you will see a # in the interactive lock.\n";
+    cout << "- Keep the first digit the same and proceed to the second digit.\n";
+    cout << "- Repeat the process until all 4 digits are guessed correctly to unlock the lock.\n\n";
 
     // Start guessing
     int num_guesses = 0;
@@ -68,6 +68,7 @@ int main() {
         if (allCorrect) {
             isGuessCorrect = true;
             cout << "Congratulations! You have successfully picked the lock!\n";
+            cout << "Your two letters are: A & N\n";
         }
 
     } while (!isGuessCorrect);
