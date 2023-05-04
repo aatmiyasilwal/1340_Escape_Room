@@ -73,7 +73,7 @@ void monsterMove(vector<vector<string> >& board){
         
     }
     if (abs(colDiff) == 1){
-        x_move = colDiff * (-1)
+        x_move = colDiff * (-1);
     }
     else if (abs(colDiff) > 1){
         
@@ -146,7 +146,7 @@ bool end_check(vector<vector<string> >& board){
     if (player_row == treasure_row && player_col == treasure_col){
         system("clear");
         displayBoard(board);
-        cout << "You finished Minigame 1! The clue to the key is LA." << endl;
+        cout << "You finished Minigame 1! The clue to the key is 'Q' 'U'." << endl;
         win_lose = true;
         return true;
     }
@@ -185,6 +185,11 @@ void movePlayer(vector<vector<string> >& board, string move){
 //main function
 int main() {
     while (true){
+        coin_count = 0;
+        trigger_count = 0;
+        player_row = 0;
+        player_col = 0;
+        
         gameOver = false;
         monster_activate = false;
         perk_purchased = false;
@@ -211,6 +216,7 @@ int main() {
                 break;
             }
             if (monster_activate){
+                monsterMove(board);
                 gameOver = end_check(board);
                 if (gameOver){
                     break;
@@ -239,7 +245,7 @@ int main() {
                     cout << endl << endl << "You now have an option to buy a powerup to make the treasure visible." << endl << endl << "Do you want to buy the powerup for 2 coins? (Y/N): ";
                 }
                 cin >> user_choice;
-                if (user_choice == 'Y'){
+                if (user_choice == 'Y' || user_choice = 'y'){
                     coin_count -= 2;
                     perk_purchased = true;
                     monster_activate = true;
@@ -250,6 +256,15 @@ int main() {
         //check to see if the player has won or lost
         if (win_lose){
             break;        
+        }
+        else{
+            char userInput;
+            cout << "Do you want to continue playing? (Y/N): "
+            cin >> userInput;
+            
+            if (userInput == 'N' || userInput == 'n'){
+                //go back to the main room
+            }
         }
     }
     return 0;
