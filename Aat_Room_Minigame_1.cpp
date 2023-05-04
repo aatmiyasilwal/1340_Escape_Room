@@ -6,6 +6,8 @@
 #include <cstring>
 using namespace std;
 
+
+//initialized emojis for better display
 const string user_char = "😀︎";
 const string trap_char = "💣";
 const string monster_char = "👾";
@@ -14,6 +16,7 @@ const string treasure_char = "🚩";
 const string blank_char = "⬜";
 const string water_char = "🟦";
 
+//initializing global variables
 bool perk_purchased = false;
 bool monster_activate = false;
 bool win_lose = false;
@@ -29,11 +32,13 @@ int coin2_row, coin2_col;
 int player_row = 0, player_col = 0;
 int trigger_count = 0, coin_count = 0;
 
+//function that makes the board in vector form
 vector<vector<string> > initialise_board() {
     vector<vector<string> > board(5, vector<string>(8, blank_char));
     return board;
 }
 
+//function that displays board
 void displayBoard(vector<vector<string> >& board){
     if (monster_activate){
         board[monster_row][monster_col] = monster_char;
@@ -53,6 +58,7 @@ void displayBoard(vector<vector<string> >& board){
     }
 }
 
+//function that is responsibly to smartly move the monster
 void monsterMove(vector<vector<string> >& board){
     int x_move = 0, y_move = 0;
     int rowDiff, colDiff;
@@ -83,6 +89,7 @@ void monsterMove(vector<vector<string> >& board){
     }
 }
 
+//fucntion that randomly places characters on the board
 void characterAllocation(vector<vector<string> >& board){
     srand(time(nullptr));
     monster_row = rand() % 5;
