@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>  // for setw()
 
 using namespace std;
 
@@ -60,11 +61,11 @@ int main()
         {
             if (card_flipped[i])
             {
-                cout << game_board[i] << "\t";
+                cout << setw(13) << left << game_board[i];  // set width to 13
             }
             else
             {
-                cout << "X\t";
+                cout << setw(13) << left << "X";  // set width to 13
             }
             if ((i + 1) % COLS == 0)
             {
@@ -84,7 +85,7 @@ int main()
             card_flipped[card2] = true;
 
             // display the selected cards
-            cout << game_board[card1] << "\t" << game_board[card2] << endl;
+            cout << setw(13) << left << game_board[card1] << setw(13) << left << game_board[card2] << endl;
 
             // check for a match
             if (game_board[card1] == game_board[card2])
@@ -107,7 +108,7 @@ int main()
 
     // display the final game state
     cout << "Congratulations, you found all the matches in " << num_attempts << " attempts!" << endl;
-    cout << "Your two letters are: B & T" << endl;
+    cout << "Your two letters are: A & N\n";
 
     return 0;
 }
