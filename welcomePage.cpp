@@ -3,6 +3,7 @@
 #include <chrono> // for sleep function
 #include <thread> // for sleep function
 #include <string>
+#include <unistd.h>
 using namespace std;
 
 int main() {
@@ -20,6 +21,6 @@ int main() {
         }
         cout << endl;
     }
+    sleep(5);
     return 0;
 }
-
