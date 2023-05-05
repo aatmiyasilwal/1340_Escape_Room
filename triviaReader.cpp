@@ -40,10 +40,6 @@ int main(int argc, char *argv[]) {
     }
     
     fin.close();
-    
-    for (int i = 0; i < options.size(); i++){
-        
-    }
 
     srand(time(0));
     int correct_answers = 0, random_value;
@@ -52,7 +48,7 @@ int main(int argc, char *argv[]) {
     string user_answer;
     for (int m = 0; m < 5; m ++){
         random_value = nums[m];
-        cout << questions[random_value] << endl << "The options are: " << endl;
+        cout << questions[random_value] << endl << "The options are: " << endl << endl;
 
         for (int j = 0; j < options[random_value].size(); j++){
             cout << char('a' + j) << ". " << options[random_value][j] << endl;
@@ -62,7 +58,14 @@ int main(int argc, char *argv[]) {
         cin >> user_answer;
 
         if (user_answer.substr(0,1) == answers[random_value]){
+            cout << "Congratulations! That was the correct answer!" << endl;
             correct_answers++;
+            if (correct_answers != 3){
+                cout << "Onto the next question!" << endl << endl;
+            }
+        }
+        else{
+            cout << endl <<  "That was the wrong answer! Try another question!" << endl << endl;
         }
         if (correct_answers >= 3){
             break;
@@ -70,7 +73,10 @@ int main(int argc, char *argv[]) {
            
     }
     if (correct_answers >= 3){
-        cout << "You successfully passed the trivia round. The clues for this level are '', ''";
+        cout << endl << "You successfully passed the trivia round. The clues for this level are '', ''" << endl;
+    }
+    else{
+        cout << endl << "You couldn't finish the trivia round!" << endl;
     }
 	return 0;
 }
