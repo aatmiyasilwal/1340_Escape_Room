@@ -68,7 +68,7 @@ int main() {
         if (allCorrect) {
             isGuessCorrect = true;
             cout << "Congratulations! You have successfully picked the lock!\n";
-            cout << "Your two letters are: A & N\n";
+            cout << "Your two letters are: B & A\n";
         }
 
     } while (!isGuessCorrect);
