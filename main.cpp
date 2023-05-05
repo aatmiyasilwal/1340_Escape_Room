@@ -349,7 +349,7 @@ int main() {
 	}
 
 	cout << "---------------" << endl;
-	cout << " YOU WIN!" << endl;
+	cout << " YOU WIN! You have unlocked the Letters s,p,e" << endl;
 	cout << "---------------" << endl;
 	return 0;
 	
