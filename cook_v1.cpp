@@ -256,6 +256,18 @@ int main(int argc, char ** argv) {
         
     } while(player -> getmv() != 'q'); //quit on 'q'
     
+    napms(2000);
+    
+    //ending
+    wclear(win_main);
+    box(win_main, 0, 0);
+    mvwprintw(win_main, height/2, width/2 - 12, "PRESS ENTER TO CONTINUE");
+    wrefresh(win_main);
+    int i;
+    do {
+    i = getch();
+    } while (i != 10);
+    
     getch();
     endwin();
     return 0;
