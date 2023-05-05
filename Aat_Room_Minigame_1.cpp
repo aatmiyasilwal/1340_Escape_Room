@@ -215,7 +215,7 @@ int main() {
                 string move;
                 cout << "Enter where you want to move (W/A/S/D): ";
                 cin >> move;
-                if (move == "W" || move == "A" || move == "S" || move == "D"){
+                if (move == "W" || move == "A" || move == "S" || move == "D" || move == "w" || move == "a" || move == "s" || move == "d"){
                     movePlayer(board, move);
                     break;
                 }
@@ -255,7 +255,7 @@ int main() {
                     cout << endl << endl << "You now have an option to buy a powerup to make the treasure visible." << endl << endl << "Do you want to buy the powerup for 2 coins? (Y/N): ";
                 }
                 cin >> user_choice;
-                if (user_choice == 'Y'){
+                if (toupper(user_choice) == 'Y'){
                     coin_count -= 2;
                     perk_purchased = true;
                     monster_activate = true;
@@ -274,6 +274,7 @@ int main() {
             
             if (userInput == 'N' || userInput == 'n'){
                 //go back to the main room
+                break;
             }
         }
     }
