@@ -70,13 +70,23 @@ void monsterMove(vector<vector<string> >& board){
         y_move = rowDiff * (-1);
     }
     else if (abs(rowDiff) > 1){
-        
+        if (colDiff != 0) {
+            y_move = (-1) * (rowDiff / abs(rowDiff));
+        }
+        else{
+            y_move = (-2) * (rowDiff / abs(rowDiff));
+        }
     }
     if (abs(colDiff) == 1){
         x_move = colDiff * (-1);
     }
     else if (abs(colDiff) > 1){
-        
+        if (rowDiff != 0) {
+            x_move = (-1) * (colDiff / abs(colDiff));
+        }
+        else{
+            y_move = (-2) * (colDiff / abs(colDiff));
+        }     
     }
     board[monster_row][monster_col] = blank_char;
     monster_row = (5 + monster_row + y_move) % 5;
@@ -85,7 +95,7 @@ void monsterMove(vector<vector<string> >& board){
     if (monster_row == treasure_row && monster_col == treasure_col){
         treasure_row = monster_row - y_move;
         treasure_col = monster_col - x_move;
-        cout << endl << "The treasure and the monster recently switched places" << endl;
+        cout << endl << "The treasure and the monster recently switched places!" << endl;
     }
 }
 
@@ -245,7 +255,7 @@ int main() {
                     cout << endl << endl << "You now have an option to buy a powerup to make the treasure visible." << endl << endl << "Do you want to buy the powerup for 2 coins? (Y/N): ";
                 }
                 cin >> user_choice;
-                if (user_choice == 'Y' || user_choice = 'y'){
+                if (user_choice == 'Y'){
                     coin_count -= 2;
                     perk_purchased = true;
                     monster_activate = true;
@@ -259,7 +269,7 @@ int main() {
         }
         else{
             char userInput;
-            cout << "Do you want to continue playing? (Y/N): "
+            cout << "Do you want to continue playing? (Y/N): " << endl;
             cin >> userInput;
             
             if (userInput == 'N' || userInput == 'n'){
