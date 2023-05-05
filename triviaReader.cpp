@@ -7,9 +7,25 @@
 #include<stdlib.h>
 #include<time.h>
 #include <algorithm>
+#include <chrono> // for sleep function
+#include <thread> // for sleep function
 using namespace std;
 
-
+void printq(string s){
+    for (char c : s) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(30)); // adjust delay time here
+    }
+    cout << endl;
+}
+void prints(vector<string>s){
+     for (string c : s) {
+        cout << c << flush;
+        cout<<endl;
+        this_thread::sleep_for(chrono::milliseconds(30)); // adjust delay time here
+    }
+    cout << endl;
+}
 int main(int argc, char *argv[]) {
     vector<string> questions;
     vector<vector<string> > options(5, vector<string>(4, ""));
