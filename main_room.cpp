@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 #include "sprite.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -194,6 +196,12 @@ int main(int argc, char ** argv) {
                 //go into room 1
                 if (ans == 'y') {
                     printGo(win_text, 3);
+                    
+                    system("g++ -o loading3 loading3.cpp");
+                    system("./loading3");
+
+                    system("g++ room1.cpp -lncurses -o room1");
+                    system("./room1");
 
                     //room 1
                     box(win_main, 0, 0);
@@ -236,7 +244,12 @@ int main(int argc, char ** argv) {
                 if (ans == 'y') {
                     printGo(win_text, 2);
 
-                    //room 1
+                    //room 2
+//                    system("g++ -o loading3 loading3.cpp");
+//                    system("./loading3");
+
+                    system("g++ room2.cpp -lncurses -o room2");
+                    system("./room2");
                     
                     complete = 2;
                 }
@@ -259,8 +272,12 @@ int main(int argc, char ** argv) {
                 if (ans == 'y') {
                     printGo(win_text, 3);
 
-                    //room 1
-                    
+                    //room 3
+                    system("g++ -o loading3 loading3.cpp");
+                    system("./loading3");
+
+                    system("g++ -o room3 room3.cpp");
+                    system("./room3");
                     complete = 3;
                 }
                 else {
@@ -282,8 +299,12 @@ int main(int argc, char ** argv) {
                 if (ans == 'y') {
                     printGo(win_text, 4);
 
-                    //room 1
-                    
+                    //room 4
+//                    system("g++ -o loading3 loading3.cpp");
+//                    system("./loading3");
+
+                    system("g++ room4.cpp -lncurses -o room4");
+                    system("./room4");
                     complete = 4;
                 }
                 else {
