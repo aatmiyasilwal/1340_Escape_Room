@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
+
 using namespace std;
 
 int main() {
@@ -69,6 +71,10 @@ int main() {
             isGuessCorrect = true;
             cout << "Congratulations! You have successfully picked the lock!\n";
             cout << "Your two letters are: B & A\n";
+            ofstream fout;
+            fout.open("r3check.txt", ios::app);
+            fout << "Y";
+            fout.close();
         }
 
     } while (!isGuessCorrect);

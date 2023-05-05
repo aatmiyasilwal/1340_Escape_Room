@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <iomanip>
 #include<unistd.h>
+#include <fstream>
+
 using namespace std;
 void check(int sh,int sl,int rh,int rl,int &balance,int &bet){
     if(sh>sl){
@@ -113,6 +115,10 @@ int main(){
         }
         else if(balance>=2000){
             cout<<"Game Completed. Here is Your clue: M,A,R";
+            ofstream fout;
+            fout.open("r1check.txt", ios::app);
+            fout << "Y";
+            fout.close();
             break;
         }
         else if (balance==0)

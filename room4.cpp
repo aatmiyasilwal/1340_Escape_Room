@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 #include "sprite.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -84,9 +86,15 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 3 && xPos == 5) {
                 delayedText(win_text, 1, 10, "Loading UnderCook");
+                system("g++ cook_v1.cpp -lncurses -o cooking");
+                system("./cooking");
+                //MAKE IT WON
             }
             else if (yPos == 13 && xPos == 43) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
+                system("g++ -o triviaReader triviaReader.cpp");
+                system("./triviaReader trivia4.txt DER.");
+                
             }
             
             player->command = ' ';

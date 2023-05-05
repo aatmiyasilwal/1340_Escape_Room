@@ -6,11 +6,13 @@
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>  // for setw()
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 // DC comic book characters
-const vector<string> DC_CHARACTERS = {"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
+const vector<string> DC_CHARACTERS{"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
 
 // function to shuffle the DC comic book characters
 void shuffle_characters(vector<string>& characters)
@@ -109,6 +111,10 @@ int main()
     // display the final game state
     cout << "Congratulations, you found all the matches in " << num_attempts << " attempts!" << endl;
     cout << "Your two letters are: A & N\n";
+    ofstream fout;
+    fout.open("r3check.txt", ios::app);
+    fout << "Y";
+    fout.close();
 
     return 0;
 }

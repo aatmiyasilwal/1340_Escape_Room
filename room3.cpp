@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 #include "sprite.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -90,12 +92,18 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 12 && xPos == 1) {
                 delayedText(win_text, 1, 10, "Loading Lockpicking");
+                system("g++ -o lockpicking lockpicking.cpp");
+                system("./lockpicking");
             }
             else if (yPos == 7 && xPos == 25) {
                 delayedText(win_text, 1, 10, "Loading Memory");
+                system("g++ -o memory memory.cpp");
+                system("./memory");
             }
             else if (yPos == 1 && xPos == 43) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
+                system("g++ -o triviaReader triviaReader.cpp");
+                system("./triviaReader trivia3.txt TM.");    
             }
             
             player->command = ' ';

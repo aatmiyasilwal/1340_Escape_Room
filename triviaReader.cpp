@@ -27,17 +27,32 @@ void prints(vector<string>s){
     cout << endl;
 }
 int main(int argc, char *argv[]) {
+    system("clear");
     vector<string> questions;
     vector<vector<string> > options(5, vector<string>(4, ""));
     vector<string> answers;
-    string ques_number, text, line;
+    string ques_number, text, line, out_file_name;
     int line_count = 0, question_count = 0, inner_count = 0;
     ifstream fin;
     ofstream fout;
     string filename = argv[1];
     string clues = argv[2];
-
+    
+    if(filename == "trivia1.txt"){
+        out_file_name = "r1check.txt";
+    }
+    else if (filename == "trivia2.txt"){
+        out_file_name = "r2check.txt";
+    }
+    else if (filename == "trivia3.txt"){
+        out_file_name = "r3check.txt";
+    }
+    else if (filename == "trivia4.txt"){
+        out_file_name = "r4check.txt";
+    }
+    
     fin.open(filename.c_str());
+    fout.open(out_file_name.c_str(), ios::app);
 
     while(fin >> ques_number){
         getline(fin, line);
@@ -96,9 +111,12 @@ int main(int argc, char *argv[]) {
     }
     if (correct_answers >= 3){
         cout << endl << "You successfully passed the trivia round. The clues for this level are " << clues << endl;
+        fout << "Y";
+        
     }
     else{
         cout << endl << "You couldn't finish the trivia round!" << endl;
     }
+    fout.close();
 	return 0;
 }

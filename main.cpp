@@ -5,6 +5,8 @@
 #include<unistd.h>
 #include "Card.cpp"
 #include "Deck.cpp"
+#include <fstream>
+
 
 bool checkWin(vector<vector<Card> > f) {
 	int i =0;
@@ -350,6 +352,10 @@ int main() {
 
 	cout << "---------------" << endl;
 	cout << " YOU WIN! You have unlocked the Letters S,P,E" << endl;
+    ofstream fout;
+    fout.open("r1check.txt", ios::app);
+    fout << "Y";
+    fout.close();
 	cout << "---------------" << endl;
 	return 0;
 	

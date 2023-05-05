@@ -12,6 +12,7 @@
 #include <ctime>
 #include <sys/time.h>
 #include "sprite.h"
+#include <fstream>
 
 using namespace std;
 
@@ -261,6 +262,13 @@ int main(int argc, char ** argv) {
     //ending
     wclear(win_main);
     box(win_main, 0, 0);
+    if (win){
+        mvwprintw(win_main, height/2 - 1, width/2 - 12, "Mini Game COmpleted! The clue is 'WON'.");
+        ofstream fout;
+        fout.open("r4check.txt", ios::app);
+        fout << "Y";
+        fout.close();
+    }
     mvwprintw(win_main, height/2, width/2 - 12, "PRESS ENTER TO CONTINUE");
     wrefresh(win_main);
     int i;
@@ -270,6 +278,8 @@ int main(int argc, char ** argv) {
     
     getch();
     endwin();
+    system("g++ room4.cpp -lncurses -o room4");
+    system("./room4");
     return 0;
 }
 

@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
     std::string input = "";
-    std::string password = "BATMAN";
+    std::string password = argv[1];
     bool unlocked = false;
 
     while (!unlocked)

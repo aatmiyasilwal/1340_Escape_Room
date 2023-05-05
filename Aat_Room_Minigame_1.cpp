@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
+#include <fstream>
 using namespace std;
 
 
@@ -13,7 +14,7 @@ const string trap_char = "💣";
 const string monster_char = "👾";
 const string coin_char = "🪙";
 const string treasure_char = "🚩";
-const string blank_char = "⬜";
+const string blank_char = "⬛";
 const string water_char = "🟦";
 
 //initializing global variables
@@ -156,7 +157,7 @@ bool end_check(vector<vector<string> >& board){
     if (player_row == treasure_row && player_col == treasure_col){
         system("clear");
         displayBoard(board);
-        cout << "You finished Minigame 1! The clue to the key is 'Q' 'U'." << endl;
+        cout << "You finished Minigame 1! The clue to the key is HAR." << endl;
         win_lose = true;
         return true;
     }
@@ -265,6 +266,12 @@ int main() {
         }
         //check to see if the player has won or lost
         if (win_lose){
+            ofstream fout;
+            fout.open("r2check.txt", ios::app);
+            fout << "Y";
+            fout.close();
+            system("g++ room2.cpp -lncurses -o room2");
+            system("./room2");
             break;        
         }
         else{
@@ -274,6 +281,8 @@ int main() {
             
             if (userInput == 'N' || userInput == 'n'){
                 //go back to the main room
+                system("g++ room2.cpp -lncurses -o room2");
+                system("./room2");
                 break;
             }
         }

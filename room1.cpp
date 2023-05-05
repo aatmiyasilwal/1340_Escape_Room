@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 #include "sprite.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -89,12 +91,21 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 11 && xPos == 9) {
                 delayedText(win_text, 1, 5, "Loading Solitaire");
+                endwin();
+                system("g++ -std=c++11 main.cpp -o soltaire");
+                system("./soltaire");
             }
             else if (yPos == 3 && xPos == 23) {
                 delayedText(win_text, 1, 5, "Loading Betting Game");
+                endwin();
+                system("g++ -std=c++11 bettingGame.cpp -o bettingGame");
+                system("./bettingGame");
             }
             else if ((yPos == 10 || yPos==9 || yPos==11) && xPos == 41) {
                 delayedText(win_text, 1, 5, "Loading Trivia");
+                endwin();
+                system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
+                system("./triviaReader trivia1.txt UN.");
             }
             
             player->command = ' ';
@@ -102,9 +113,19 @@ int main(int argc, char ** argv) {
 //            wclear(win_text);
 //            box(win_text, 0, 0);
         }
+        ifstream fin;
+        string checker = "";
+        fin.open("r1check.txt");
+        fin >> checker;
         
+        if (checker == "YYY"){
+            system("g++ -o door door.cpp");
+            system("./door SUPERMAN");
+        }
+        fin.close();
     } while (player->getmv() != 'q');
     
+
     getch();
     endwin();
     return 0;
