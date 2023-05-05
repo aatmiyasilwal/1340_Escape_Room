@@ -35,6 +35,7 @@ int main(int argc, char *argv[]) {
     ifstream fin;
     ofstream fout;
     string filename = argv[1];
+    string clues = argv[2];
 
     fin.open(filename.c_str());
 
@@ -61,10 +62,14 @@ int main(int argc, char *argv[]) {
     int correct_answers = 0, random_value;
     int nums[5] = {0, 1, 2, 3, 4};
     random_shuffle(nums, nums + 5);
+
     string user_answer;
     for (int m = 0; m < 5; m ++){
         random_value = nums[m];
-        cout << questions[random_value] << endl << "The options are: " << endl << endl;
+        printq(questions[random_value]);
+        cout << endl;
+        printq("The options are: ");
+        cout << endl;
 
         for (int j = 0; j < options[random_value].size(); j++){
             cout << char('a' + j) << ". " << options[random_value][j] << endl;
@@ -74,14 +79,15 @@ int main(int argc, char *argv[]) {
         cin >> user_answer;
 
         if (user_answer.substr(0,1) == answers[random_value]){
-            cout << "Congratulations! That was the correct answer!" << endl;
+            printq("Congratulations! That was the correct answer!");
             correct_answers++;
             if (correct_answers != 3){
-                cout << "Onto the next question!" << endl << endl;
+                printq("Onto the next question!");
             }
         }
         else{
-            cout << endl <<  "That was the wrong answer! Try another question!" << endl << endl;
+            printq("That was the wrong answer! Try another question!");
+            cout << endl;
         }
         if (correct_answers >= 3){
             break;
@@ -89,7 +95,7 @@ int main(int argc, char *argv[]) {
            
     }
     if (correct_answers >= 3){
-        cout << endl << "You successfully passed the trivia round. The clues for this level are '', ''" << endl;
+        cout << endl << "You successfully passed the trivia round. The clues for this level are " << clues << endl;
     }
     else{
         cout << endl << "You couldn't finish the trivia round!" << endl;
