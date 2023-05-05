@@ -6,6 +6,7 @@
 #include <iomanip>
 #include<stdlib.h>
 #include<time.h>
+#include <algorithm>
 using namespace std;
 
 
@@ -41,11 +42,35 @@ int main(int argc, char *argv[]) {
     fin.close();
     
     for (int i = 0; i < options.size(); i++){
-        cout << questions[i] << endl;
-        for (int j = 0; j < options[i].size(); j++){
-            cout << options[i][j] << endl;
+        
+    }
+
+    srand(time(0));
+    int correct_answers = 0, random_value;
+    int nums[5] = {0, 1, 2, 3, 4};
+    random_shuffle(nums, nums + 5);
+    string user_answer;
+    for (int m = 0; m < 5; m ++){
+        random_value = nums[m];
+        cout << questions[random_value] << endl << "The options are: " << endl;
+
+        for (int j = 0; j < options[random_value].size(); j++){
+            cout << char('a' + j) << ". " << options[random_value][j] << endl;
         }
-        cout << endl << answers[i] << endl;
+
+        cout << "What's your answer? (a/b/c/d): ";
+        cin >> user_answer;
+
+        if (user_answer.substr(0,1) == answers[random_value]){
+            correct_answers++;
+        }
+        if (correct_answers >= 3){
+            break;
+        }
+           
+    }
+    if (correct_answers >= 3){
+        cout << "You successfully passed the trivia round. The clues for this level are '', ''";
     }
 	return 0;
 }
