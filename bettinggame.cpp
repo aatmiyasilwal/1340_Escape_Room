@@ -112,7 +112,7 @@ int main(){
             cout<<"You do not have enough balance"<<endl;
         }
         else if(balance>=2000){
-            cout<<"Game Completed. Here is Your clue: m,a,r";
+            cout<<"Game Completed. Here is Your clue: M,A,R";
             break;
         }
         else if (balance==0)
