@@ -172,6 +172,7 @@ int main(int argc, char ** argv) {
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
     int counter=0;
+    int complete = 0;
     
     do {
         command = player -> display();
@@ -184,7 +185,6 @@ int main(int argc, char ** argv) {
         
         //open door
         if (command == 'p') {
-            int complete = 0;
             
             //door 1
             if (yPos == 5 && (xPos>=17 && xPos<=21)) {
@@ -196,11 +196,8 @@ int main(int argc, char ** argv) {
                 //go into room 1
                 if (ans == 'y') {
                     printGo(win_text, 3);
-                    
-//                    system("g++ -o loading3 loading3.cpp");
-//                    system("./loading3");
-                    
                     complete = 1;
+                    break;
                 }
                 else {
                     player -> display();
@@ -220,13 +217,6 @@ int main(int argc, char ** argv) {
                 //go into room 2
                 if (ans == 'y') {
                     printGo(win_text, 2);
-
-                    //room 2
-//                    system("g++ -o loading3 loading3.cpp");
-//                    system("./loading3");
-                    
-//                    system("g++ room2.cpp -lncurses -o room2");
-//                    system("./room2");
                     complete = 2;
                     break;
                 }
@@ -245,14 +235,9 @@ int main(int argc, char ** argv) {
                 delayedText(win_text, 1, 15, "Go into Room 3? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
-                //go into room 1
+                //go into room 3
                 if (ans == 'y') {
                     printGo(win_text, 3);
-
-                    //room 3
-//                    system("g++ -o loading3 loading3.cpp");
-//                    system("./loading3");
-                    
                     complete = 3;
                     break;
                 }
@@ -274,10 +259,6 @@ int main(int argc, char ** argv) {
                 //go into room 1
                 if (ans == 'y') {
                     printGo(win_text, 4);
-
-                    //room 4
-//                    system("g++ -o loading3 loading3.cpp");
-//                    system("./loading3");
                     complete = 4;
                     break;
                 }
@@ -289,55 +270,60 @@ int main(int argc, char ** argv) {
                 }
             }
             
-            if (complete>=1 && complete<=4) {
-                lock[complete-1] = "🔑";
-                for (int i=1; i<h_door-1; i++) {
-                    mvwprintw(door, i, 1, lock[i-1].c_str());
-                }
-                wrefresh(door);
-                counter++;
-                
-                if (counter == 4) {
-                    napms(1000);
-                    wclear(win_text);
-                    box(win_text, 0, 0);
-                    delayedText(win_text, 1, 20, "CONGRATULATIONS!! YOU WIN");
-                    napms(1000);
-                    mvwprintw(win_text, 3, 21, "PRESS ENTER TO CONTINUE");
-                    wrefresh(win_text);
-                    int i;
-                    do {
-                    i = getch();
-                    } while (i != 10);
-                    break;
-                }
-            
-            }
-            player->command = ' ';
+//            if (complete>=1 && complete<=4) {
+//                lock[complete-1] = "🔑";
+//                for (int i=1; i<h_door-1; i++) {
+//                    mvwprintw(door, i, 1, lock[i-1].c_str());
+//                }
+//                wrefresh(door);
+//                counter++;
+//
+//                if (counter == 4) {
+//                    napms(1000);
+//                    wclear(win_text);
+//                    box(win_text, 0, 0);
+//                    delayedText(win_text, 1, 20, "CONGRATULATIONS!! YOU WIN");
+//                    napms(1000);
+//                    mvwprintw(win_text, 3, 21, "PRESS ENTER TO CONTINUE");
+//                    wrefresh(win_text);
+//                    int i;
+//                    do {
+//                    i = getch();
+//                    } while (i != 10);
+//                    break;
+//                }
+//
+///           }
+//            player->command = ' ';
         }
         
         
     } while (player->getmv() != 'q');
     
-    getch();
     endwin();
     
-    swtich (complete)
+    switch (complete)
     {
-    ase 1:
-        system("g++ room1.cpp -lncurses -o room1");
-        system("./room1");
-    case 2:
-        system("g++ room2.cpp -lncurses -o room2");
-        system("./room2");
-    case 3:
-        system("g++ -o room3 room3.cpp");
-        system("./room3");
-    case 4:
-        system("g++ room4.cpp -lncurses -o room4");
-        system("./room4");
+        case 1:
+            system("g++ room1.cpp -lncurses -o room1");
+            system("./room1");
+            break;
+
+        case 2:
+            system("g++ room2.cpp -lncurses -o room2");
+            system("./room2");
+            break;
+            
+        case 3:
+            system("g++ room3.cpp -lncurses -o room3");
+            system("./room3");
+            break;
+           
+        case 4:
+            system("g++ room4.cpp -lncurses -o room4");
+            system("./room4");
+            break;
     }
-    
     
     return 0;
 }

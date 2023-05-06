@@ -107,20 +107,8 @@ int main(int argc, char ** argv) {
             }
             
             player->command = ' ';
-//            napms(500);
-//            wclear(win_text);
-//            box(win_text, 0, 0);
+            
         }
-        ifstream fin;
-        string checker = "";
-        fin.open("r1check.txt");
-        fin >> checker;
-        
-        if (checker == "YYY"){
-            system("g++ -o door door.cpp");
-            system("./door SUPERMAN");
-        }
-        fin.close();
     } while (player->getmv() != 'q');
     
     getch();

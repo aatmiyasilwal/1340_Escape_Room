@@ -6,7 +6,6 @@
 #include "sprite.h"
 #include <fstream>
 
-
 using namespace std;
 
 const int width = 48;
@@ -88,27 +87,18 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 4 && xPos == 17) {
                 delayedText(win_text, 1, 10, "Loading Monster");
-//                clear();
-//                refresh();
-//                endwin();
-//                system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
-//                system("./monsterGame");
                 game = 1;
                 break;
                 
             }
             else if (yPos == 12 && xPos == 41) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
-//                system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-//                system("./triviaReader trivia2.txt LEY.");
                 game = 2;
                 break;
             }
             
             player->command = ' ';
-//            napms(500);
-//            wclear(win_text);
-//            box(win_text, 0, 0);
+
         }
         
     } while (player->getmv() != 'q');

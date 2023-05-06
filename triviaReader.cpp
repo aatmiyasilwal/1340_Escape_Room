@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
     
     fin.close();
 
-    srand(time(0));
+    srand(time(NULL));
     int correct_answers = 0, random_value;
     int nums[5] = {0, 1, 2, 3, 4};
     random_shuffle(nums, nums + 5);
@@ -127,5 +127,5 @@ int main(int argc, char *argv[]) {
         system(last_run.c_str());
     }
     fout.close();
-	return 0;
+    return 0;
 }

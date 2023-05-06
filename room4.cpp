@@ -6,7 +6,6 @@
 #include "sprite.h"
 #include <fstream>
 
-
 using namespace std;
 
 const int width = 48;

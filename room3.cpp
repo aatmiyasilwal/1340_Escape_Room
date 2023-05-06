@@ -6,7 +6,6 @@
 #include "sprite.h"
 #include <fstream>
 
-
 using namespace std;
 
 const int width = 48;
@@ -108,9 +107,6 @@ int main(int argc, char ** argv) {
             }
             
             player->command = ' ';
-//            napms(500);
-//            wclear(win_text);
-//            box(win_text, 0, 0);
         }
         
     } while (player->getmv() != 'q');
@@ -127,7 +123,7 @@ int main(int argc, char ** argv) {
             system("./memory");
         case 3 :
             system("g++ -o triviaReader triviaReader.cpp");
-            system("./triviaReader trivia3.txt TM. room3.cpp");  
+            system("./triviaReader trivia3.txt TM. room3.cpp");
     }
     
     return 0;
