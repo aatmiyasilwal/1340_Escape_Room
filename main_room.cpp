@@ -51,7 +51,7 @@ void reprint(WINDOW * r1, WINDOW * r2, WINDOW * r3, WINDOW * r4) {
     wrefresh(r1);
 
     box(r2, 0, 0);
-    mvwprintw(r2, 3, 0, "🚪");
+    mvwprintw(r2, 5, 13, "🚪");
     wrefresh(r2);
 
     box(r3, 0, 0);
@@ -100,7 +100,7 @@ int main(int argc, char ** argv) {
     wrefresh(r1);
     
     WINDOW * r2 = initWin(h_r2, w_r2, 0, w_r1+7);
-    mvwprintw(r2, 3, 0, "🚪");
+    mvwprintw(r2, 5, 13, "🚪");
     wrefresh(r2);
     
     WINDOW * r3 = initWin(h_r3, w_r3, height-h_r3, 0);
@@ -186,7 +186,7 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-//        mvwprintw(win_main, 0, w_r1 + 1, "%d %d", yPos, xPos); //show current loc
+        mvwprintw(win_main, 0, w_r1 + 1, "%d %d", yPos, xPos); //show current loc
         wrefresh(win_main);
 
         reprint(r1, r2, r3, r4);
@@ -216,7 +216,7 @@ int main(int argc, char ** argv) {
             }
             
             //door 2
-            if (xPos == 31 && (yPos>=2 && yPos<=4)) {
+            if (yPos == 6 && (xPos>=45 && xPos<=49)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
                 delayedText(win_text, 2, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
