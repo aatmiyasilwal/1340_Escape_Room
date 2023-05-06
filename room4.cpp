@@ -15,12 +15,14 @@ const int h_tBox = 5;
 
 int yPos = height/2, xPos = 1;
 
+//initialize ncurses files
 void init() {
     initscr();
     cbreak();
     noecho();
 }
 
+//display delayed texts
 void delayedText(WINDOW * win, int y, int x, string text) {
     int yMax, xMax, cX = x, cY = y;
     getmaxyx(win, yMax, xMax);
@@ -40,6 +42,7 @@ void delayedText(WINDOW * win, int y, int x, string text) {
 
 map<pos, bool> obstacle;
 
+//initialize window by refreshing
 WINDOW* initWin(int height, int width, int startY, int startX) {
     WINDOW * win = newwin(height, width, startY ,startX);
     refresh();
@@ -48,6 +51,7 @@ WINDOW* initWin(int height, int width, int startY, int startX) {
     return win;
 }
 
+//drawing obstacles into game space
 void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
     for (int i=0; i<size; i++) {
         mvwaddch(win, posArr[i].yLoc, posArr[i].xLoc, shape);
@@ -56,6 +60,7 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
     }
 }
 
+//added game functionality and redirection
 int main(int argc, char ** argv) {
     
     //shut down
