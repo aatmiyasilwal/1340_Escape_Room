@@ -10,6 +10,17 @@
 using namespace std;
 
 int main(){
+
+	ofstream foutOne("r1check.txt", ios::trunc);
+	ofstream foutTwo("r2check.txt", ios::trunc);
+	ofstream foutThree("r3check.txt", ios::trunc);
+	ofstream foutFour("r4check.txt", ios::trunc);
+
+	foutOne.close();
+	foutTwo.close();
+	foutThree.close();
+	foutFour.close();	
+
 //	system("g++ -std=c++11 welcomePage.cpp -o welcomePage");
 //	system("./welcomePage");
 //
