@@ -8,6 +8,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    //taking password as command line input
     std::string input = "";
     std::string password = argv[1];
     bool unlocked = false;
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
 
             continue;
         }
-
+//if password is correct, go back to main room
         if (input == password)
         {
             unlocked = true;
