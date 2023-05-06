@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <string>
 #include <map>
+#include <vector>
 #include "sprite.h"
 #include <fstream>
 
@@ -61,14 +62,14 @@ int main(int argc, char ** argv) {
     fin.open("r2check.txt");
     int total_complete_count = 0;
     string word_in_check, other_word;
-
+    
     while (fin >> word_in_check){
         if (word_in_check == "Monster"){
             fin >> other_word;
             cluesr2.push_back(other_word);
             total_complete_count++;
         }
-
+        
         else if (word_in_check == "Trivia"){
             fin >> other_word;
             cluesr2.push_back(other_word);
@@ -78,8 +79,8 @@ int main(int argc, char ** argv) {
     fin.close();
     if(total_complete_count >= 2){
         system("g++ door.cpp -o door");
-        system("./door HARLEY")
-
+        system("./door HARLEY");
+        
     }
     
     setlocale(LC_ALL, "");
@@ -87,7 +88,9 @@ int main(int argc, char ** argv) {
     
     WINDOW * win_main = initWin(height, width, 0 ,0);
     WINDOW * win_text = initWin(h_tBox, width, height-1 ,0);
-    
+    mvwprintw(win_text, 1, 1, "You have to finish all mini-games to get the ");
+    mvwprintw(win_text, 2, 1, "clues and get out of the room.");
+    wrefresh(win_text);
     
     mvwprintw(win_main, 4, 15, "👾");
     mvwprintw(win_main, 13, 41, "💡");
@@ -96,10 +99,10 @@ int main(int argc, char ** argv) {
     
     pos w1[15] = {pos(3,13), pos(3,15), pos(3,17), pos(3,19), pos(3,21), pos(3,23), pos(4,23), pos(5,23), pos(6,23), pos(6,19), pos(5,19), pos(5,17), pos(5,15), pos(5,13), pos(4,13)};
     drawObstacle(win_main, w1, 15, '#');
-                    
+    
     pos w2[8] = {pos(10,39), pos(11,39), pos(12,39), pos(13,39), pos(10,43), pos(11,43), pos(12,43), pos(13,43)};
     drawObstacle(win_main, w2, 8, '#');
-                    
+    
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
     int game;
@@ -108,33 +111,36 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
+//        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
         wrefresh(win_main);
         if (command == 'p') {
             if (yPos == 4 && xPos == 17) {
-                delayedText(win_text, 1, 10, "Loading Monster");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Monster");
                 game = 1;
                 break;
                 
             }
             else if (yPos == 12 && xPos == 41) {
-                delayedText(win_text, 1, 10, "Loading Trivia");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Trivia");
                 game = 2;
                 break;
             }
             
             player->command = ' ';
-
+            
         }
         
     } while (player->getmv() != 'q');
-    
-    getch();
+ 
     endwin();
     
     switch (game) {
         case 1 :
-            system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
+            system("g++ -std=c++11 Aat_Room_Minigame_1.cpp -o monsterGame");
             system("./monsterGame");
             break;
             
@@ -143,3 +149,6 @@ int main(int argc, char ** argv) {
             system("./triviaReader trivia2.txt LEY. room2.cpp");
             break;
     }
+    
+    return 0;
+}

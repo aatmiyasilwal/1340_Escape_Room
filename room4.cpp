@@ -5,6 +5,7 @@
 #include <map>
 #include "sprite.h"
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -66,20 +67,20 @@ int main(int argc, char ** argv) {
     while (fin >> word_in_check){
         if (word_in_check == "Cook"){
             fin >> other_word;
-            cluesr2.push_back(other_word);
+            cluesr4.push_back(other_word);
             total_complete_count++;
         }
 
         else if (word_in_check == "Trivia"){
             fin >> other_word;
-            cluesr2.push_back(other_word);
+            cluesr4.push_back(other_word);
             total_complete_count++;
         }
     }
     fin.close();
     if(total_complete_count >= 2){
         system("g++ door.cpp -o door");
-        system("./door WONDER")
+        system("./door WONDER");
 
     }
 
@@ -88,6 +89,9 @@ int main(int argc, char ** argv) {
     
     WINDOW * win_main = initWin(height, width, 0 ,0);
     WINDOW * win_text = initWin(h_tBox, width, height-1 ,0);
+    mvwprintw(win_text, 1, 1, "You have to finish all mini-games to get the ");
+    mvwprintw(win_text, 2, 1, "clues and get out of the room.");
+    wrefresh(win_text);
     
     mvwprintw(win_main, 3, 3, "🔪");
     mvwprintw(win_main, 13, 41, "💡");
@@ -108,16 +112,20 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
+//        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
         wrefresh(win_main);
         if (command == 'p') {
             if (yPos == 3 && xPos == 5) {
-                delayedText(win_text, 1, 10, "Loading UnderCook");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading UnderCook");
                 game = 1;
                 break;
             }
             else if (yPos == 13 && xPos == 43) {
-                delayedText(win_text, 1, 10, "Loading Trivia");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Trivia");
                 game = 2;
                 break;
             }
@@ -126,8 +134,7 @@ int main(int argc, char ** argv) {
         }
         
     } while (player->getmv() != 'q');
-    
-    getch();
+
     endwin();
     
     switch (game) {

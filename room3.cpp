@@ -83,7 +83,7 @@ int main(int argc, char ** argv) {
     fin.close();
     if(total_complete_count >= 3){
         system("g++ door.cpp -o door");
-        system("./door BATMAN")
+        system("./door BATMAN");
 
     }
 
@@ -92,7 +92,9 @@ int main(int argc, char ** argv) {
     
     WINDOW * win_main = initWin(height, width, 0 ,0);
     WINDOW * win_text = initWin(h_tBox, width, height-1 ,0);
-    
+    mvwprintw(win_text, 1, 1, "You have to finish all mini-games to get the ");
+    mvwprintw(win_text, 2, 1, "clues and get out of the room.");
+    wrefresh(win_text);
     
     mvwprintw(win_main, 13, 1, "🔓");
     mvwprintw(win_main, 7, 23, "🎴");
@@ -118,21 +120,27 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
+//        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
         wrefresh(win_main);
         if (command == 'p') {
             if (yPos == 12 && xPos == 1) {
-                delayedText(win_text, 1, 10, "Loading Lockpicking");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Lockpicking");
                 game = 1;
                 break;
             }
             else if (yPos == 7 && xPos == 25) {
-                delayedText(win_text, 1, 10, "Loading Memory");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Memory");
                 game = 2;
                 break;
             }
             else if (yPos == 1 && xPos == 43) {
-                delayedText(win_text, 1, 10, "Loading Trivia");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Trivia");
                 game = 3;
                 break;
             }
@@ -141,8 +149,7 @@ int main(int argc, char ** argv) {
         }
         
     } while (player->getmv() != 'q');
-    
-    getch();
+
     endwin();
     
     switch (game) {

@@ -63,7 +63,9 @@ int main(int argc, char ** argv) {
     
     WINDOW * win_main = initWin(height, width, 0 ,0);
     WINDOW * win_text = initWin(h_tBox, width, height-1 ,0);
-    
+    mvwprintw(win_text, 1, 1, "You have to finish all mini-games to get the ");
+    mvwprintw(win_text, 2, 1, "clues and get out of the room.");
+    wrefresh(win_text);
     
     mvwprintw(win_main, 12, 9, "🃏");
     mvwprintw(win_main, 2, 23, "💰");
@@ -88,21 +90,27 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos);
+//        mvwprintw(win_main, 0, width/2 - 1, "%d %d", yPos, xPos); //current pos
         wrefresh(win_main);
         if (command == 'p') {
             if (yPos == 11 && xPos == 9) {
-                delayedText(win_text, 1, 5, "Loading Solitaire");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Solitaire");
                 game = 1;
                 break;
             }
             else if (yPos == 3 && xPos == 23) {
-                delayedText(win_text, 1, 5, "Loading Betting Game");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Betting Game");
                 game = 2;
                 break;
             }
             else if ((yPos == 10 || yPos==9 || yPos==11) && xPos == 41) {
-                delayedText(win_text, 1, 5, "Loading Trivia");
+                wclear(win_text);
+                box(win_text, 0, 0);
+                delayedText(win_text, 2, 17, "Loading Trivia");
                 game = 3;
                 break;
             }
@@ -112,7 +120,6 @@ int main(int argc, char ** argv) {
         }
     } while (player->getmv() != 'q');
     
-    getch();
     endwin();
     
     switch (game) {

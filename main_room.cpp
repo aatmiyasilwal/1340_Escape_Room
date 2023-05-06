@@ -6,7 +6,6 @@
 #include "sprite.h"
 #include <fstream>
 
-
 using namespace std;
 
 const int width = 76;
@@ -67,7 +66,7 @@ void reprint(WINDOW * r1, WINDOW * r2, WINDOW * r3, WINDOW * r4) {
 void printGo(WINDOW * win, int r) {
     wclear(win);
     box(win, 0, 0);
-    delayedText(win, 1, 5, "Going to room");
+    delayedText(win, 2, 17, "Going to room");
 }
 
 WINDOW* initWin(int height, int width, int startY, int startX) {
@@ -79,6 +78,15 @@ WINDOW* initWin(int height, int width, int startY, int startX) {
 }
 
 int main(int argc, char ** argv) {
+    ifstream fin;
+    fin.open("totalcheck.txt");
+    string check;
+    fin >> check;
+    if (check == "YYYY") {
+        //win
+    }
+    fin.close();
+    
     setlocale(LC_ALL, "");
     init();
     
@@ -159,7 +167,7 @@ int main(int argc, char ** argv) {
     
     
     string text = "Press ENTER to start the game.";
-    delayedText(win_text, 1, 20, text);
+    delayedText(win_text, 2, 20, text);
     
     int i;
     do {
@@ -178,7 +186,7 @@ int main(int argc, char ** argv) {
         command = player -> display();
         yPos = player->yLoc;
         xPos = player->xLoc;
-        mvwprintw(win_main, 0, w_r1 + 1, "%d %d", yPos, xPos);
+//        mvwprintw(win_main, 0, w_r1 + 1, "%d %d", yPos, xPos); //show current loc
         wrefresh(win_main);
 
         reprint(r1, r2, r3, r4);
@@ -190,7 +198,7 @@ int main(int argc, char ** argv) {
             if (yPos == 5 && (xPos>=17 && xPos<=21)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 2, 3, "Go into Room 1? (y for 'yes' or keep moving) ");
+                delayedText(win_text, 2, 15, "Go into Room 1? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
                 //go into room 1
@@ -211,7 +219,7 @@ int main(int argc, char ** argv) {
             if (xPos == 31 && (yPos>=2 && yPos<=4)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 1, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
+                delayedText(win_text, 2, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
                 //go into room 2
@@ -232,7 +240,7 @@ int main(int argc, char ** argv) {
             if (yPos == 9 && (xPos>=13 && xPos<=17)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 1, 15, "Go into Room 3? (y for 'yes' or keep moving) ");
+                delayedText(win_text, 2, 15, "Go into Room 3? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
                 //go into room 3
@@ -253,7 +261,7 @@ int main(int argc, char ** argv) {
             if (yPos == 12 && (xPos>=49 && xPos<=53)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 1, 15, "Go into Room 4? (y for 'yes' or keep moving) ");
+                delayedText(win_text, 2, 15, "Go into Room 4? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
                 //go into room 1
@@ -293,10 +301,9 @@ int main(int argc, char ** argv) {
 //                    break;
 //                }
 //
-///           }
-//            player->command = ' ';
+//           }
+            player->command = ' ';
         }
-        
         
     } while (player->getmv() != 'q');
     
