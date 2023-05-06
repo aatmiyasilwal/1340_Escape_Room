@@ -1,3 +1,4 @@
+
 //This is a mini game based on Overcook
 //Developed by Sai Zom
 
@@ -295,7 +296,7 @@ int main(int argc, char ** argv) {
     
     getch();
     endwin();
-    system("g++ room4.cpp -lncurses -o room4");
+    system("g++ -pedantic-errors -std=c++11 room4.cpp -lncursesw -o room4");
     system("./room4");
     return 0;
 }

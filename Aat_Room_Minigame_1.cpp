@@ -308,7 +308,7 @@ int main() {
             fout.open("r2check.txt", ios::app);
             fout << "Monster HAR" << endl;
             fout.close();
-            system("g++ room2.cpp -lncurses -o room2");
+            system("g++ -pedantic-errors -std=c++11 room2.cpp -lncursesw -o room2");
             system("./room2");
             break;
         }
@@ -320,7 +320,7 @@ int main() {
             
             if (userInput == 'N' || userInput == 'n'){
                 //go back to the main room
-                system("g++ room2.cpp -lncurses -o room2");
+                system("g++ -pedantic-errors -std=c++11 room2.cpp -lncursesw -o room2");
                 system("./room2");
                 break;
             }

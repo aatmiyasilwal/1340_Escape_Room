@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 
             fout.close();
             
-            system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");
+            system("g++ -pedantic-errors -std=c++11 main_room.cpp -lncursesw -o mainRoom");
             system("./mainRoom");
         }
         else

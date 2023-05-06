@@ -23,16 +23,16 @@ int main(){
 	foutFour.close();
 	foutOverall.close();
 
-	system("g++ -std=c++11 welcomePage.cpp -o welcomePage");
+	system("g++ -pedantic-errors -std=c++11 welcomePage.cpp -o welcomePage");
 	system("./welcomePage");
 
-	system("g++ -std=c++11 Instructions.cpp -o instructions");
+	system("g++ -pedantic-errors -std=c++11 Instructions.cpp -o instructions");
 	system("./instructions");
 
-	system("g++ -std=c++11 loading5.cpp -lncurses -o loading5");
+	system("g++ -pedantic-errors -std=c++11 loading5.cpp -lncursesw -o loading5");
 	system("./loading5");
 
-	system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");
+	system("g++ -pedantic-errors -std=c++11 main_room.cpp -lncursesw -o mainRoom");
 	system("./mainRoom");
 //
 //	system("g++ -0 finalScreen finalScreen.cpp");
