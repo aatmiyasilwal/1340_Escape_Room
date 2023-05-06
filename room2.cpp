@@ -77,6 +77,7 @@ int main(int argc, char ** argv) {
                     
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
+    int game;
     
     do {
         command = player -> display();
@@ -87,17 +88,21 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 4 && xPos == 17) {
                 delayedText(win_text, 1, 10, "Loading Monster");
-                endwin();
-                refresh();
-                system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
-                system("./monsterGame");
-                
+//                clear();
+//                refresh();
+//                endwin();
+//                system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
+//                system("./monsterGame");
+                game = 1;
+                break;
                 
             }
             else if (yPos == 12 && xPos == 41) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
-                system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-                system("./triviaReader trivia2.txt LEY.");
+//                system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
+//                system("./triviaReader trivia2.txt LEY.");
+                game = 2;
+                break;
             }
             
             player->command = ' ';
@@ -110,5 +115,15 @@ int main(int argc, char ** argv) {
     
     getch();
     endwin();
+    
+    switch (game) {
+        case 1 :
+            system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
+            system("./monsterGame");
+        case 2 :
+            system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
+            system("./triviaReader trivia2.txt LEY.");
+    }
+    
     return 0;
 }

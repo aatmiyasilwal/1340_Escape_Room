@@ -158,6 +158,7 @@ bool end_check(vector<vector<string> >& board){
         system("clear");
         displayBoard(board);
         cout << "You finished Minigame 1! The clue to the key is HAR." << endl;
+        sleep(3);
         win_lose = true;
         return true;
     }

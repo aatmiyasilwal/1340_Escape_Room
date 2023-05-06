@@ -76,6 +76,7 @@ int main(int argc, char ** argv) {
                     
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
+    int game;
     
     do {
         command = player -> display();
@@ -86,26 +87,31 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 3 && xPos == 5) {
                 delayedText(win_text, 1, 10, "Loading UnderCook");
-                system("g++ cook_v1.cpp -lncurses -o cooking");
-                system("./cooking");
-                //MAKE IT WON
+                game = 1;
+                break;
             }
             else if (yPos == 13 && xPos == 43) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
-                system("g++ -o triviaReader triviaReader.cpp");
-                system("./triviaReader trivia4.txt DER.");
-                
+                game = 2;
+                break;
             }
             
             player->command = ' ';
-//            napms(500);
-//            wclear(win_text);
-//            box(win_text, 0, 0);
         }
         
     } while (player->getmv() != 'q');
     
     getch();
     endwin();
+    
+    switch (game) {
+        case 1 :
+            system("g++ cook_v1.cpp -lncurses -o cooking");
+            system("./cooking");
+        case 2 :
+            system("g++ -o triviaReader triviaReader.cpp");
+            system("./triviaReader trivia4.txt DER.");
+    }
+    
     return 0;
 }

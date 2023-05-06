@@ -81,6 +81,7 @@ int main(int argc, char ** argv) {
                     
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
+    int game;
     
     do {
         command = player -> display();
@@ -91,21 +92,18 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 11 && xPos == 9) {
                 delayedText(win_text, 1, 5, "Loading Solitaire");
-                endwin();
-                system("g++ -std=c++11 main.cpp -o soltaire");
-                system("./soltaire");
+                game = 1;
+                break;
             }
             else if (yPos == 3 && xPos == 23) {
                 delayedText(win_text, 1, 5, "Loading Betting Game");
-                endwin();
-                system("g++ -std=c++11 bettingGame.cpp -o bettingGame");
-                system("./bettingGame");
+                game = 2;
+                break;
             }
             else if ((yPos == 10 || yPos==9 || yPos==11) && xPos == 41) {
                 delayedText(win_text, 1, 5, "Loading Trivia");
-                endwin();
-                system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-                system("./triviaReader trivia1.txt UN.");
+                game = 3;
+                break;
             }
             
             player->command = ' ';
@@ -125,8 +123,20 @@ int main(int argc, char ** argv) {
         fin.close();
     } while (player->getmv() != 'q');
     
-
     getch();
     endwin();
+    
+    switch (game) {
+        case 1 :
+            system("g++ -std=c++11 main.cpp -o soltaire");
+            system("./soltaire");
+        case 2 :
+            system("g++ -std=c++11 bettingGame.cpp -o bettingGame");
+            system("./bettingGame");
+        case 3 :
+            system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
+            system("./triviaReader trivia1.txt UN.");
+    }
+    
     return 0;
 }

@@ -197,32 +197,9 @@ int main(int argc, char ** argv) {
                 if (ans == 'y') {
                     printGo(win_text, 3);
                     
-                    system("g++ -o loading3 loading3.cpp");
-                    system("./loading3");
-
-                    system("g++ room1.cpp -lncurses -o room1");
-                    system("./room1");
-
-                    //room 1
-                    box(win_main, 0, 0);
-                    mvwaddch(win_main, yPos, xPos, ' ');
-                    wrefresh(win_main);
+//                    system("g++ -o loading3 loading3.cpp");
+//                    system("./loading3");
                     
-                    map<pos, bool> temp_obstacle;
-                    sprite * player = new sprite(win_main, yPos, xPos, "😋", "", temp_obstacle);
-                    
-                    bool r1complete = false;
-                    do {
-                        command = player -> display();
-                    } while (player->getmv() != 'q');
-                    box(win_main, 0, 0);
-                    mvwaddch(win_main, yPos, xPos, ' ');
-                    wrefresh(win_main);
-                    
-                    reprint(r1, r2, r3, r4);
-                    player -> xLoc = 19;
-                    player -> yLoc = 5;
-                    player -> display();
                     complete = 1;
                 }
                 else {
@@ -240,18 +217,18 @@ int main(int argc, char ** argv) {
                 delayedText(win_text, 1, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
                 char ans = getch();
 
-                //go into room 1
+                //go into room 2
                 if (ans == 'y') {
                     printGo(win_text, 2);
 
                     //room 2
 //                    system("g++ -o loading3 loading3.cpp");
 //                    system("./loading3");
-
-                    system("g++ room2.cpp -lncurses -o room2");
-                    system("./room2");
                     
+//                    system("g++ room2.cpp -lncurses -o room2");
+//                    system("./room2");
                     complete = 2;
+                    break;
                 }
                 else {
                     player -> display();
@@ -273,12 +250,11 @@ int main(int argc, char ** argv) {
                     printGo(win_text, 3);
 
                     //room 3
-                    system("g++ -o loading3 loading3.cpp");
-                    system("./loading3");
-
-                    system("g++ -o room3 room3.cpp");
-                    system("./room3");
+//                    system("g++ -o loading3 loading3.cpp");
+//                    system("./loading3");
+                    
                     complete = 3;
+                    break;
                 }
                 else {
                     player -> display();
@@ -302,10 +278,8 @@ int main(int argc, char ** argv) {
                     //room 4
 //                    system("g++ -o loading3 loading3.cpp");
 //                    system("./loading3");
-
-                    system("g++ room4.cpp -lncurses -o room4");
-                    system("./room4");
                     complete = 4;
+                    break;
                 }
                 else {
                     player -> display();
@@ -347,5 +321,23 @@ int main(int argc, char ** argv) {
     
     getch();
     endwin();
+    
+    swtich (complete)
+    {
+    ase 1:
+        system("g++ room1.cpp -lncurses -o room1");
+        system("./room1");
+    case 2:
+        system("g++ room2.cpp -lncurses -o room2");
+        system("./room2");
+    case 3:
+        system("g++ -o room3 room3.cpp");
+        system("./room3");
+    case 4:
+        system("g++ room4.cpp -lncurses -o room4");
+        system("./room4");
+    }
+    
+    
     return 0;
 }

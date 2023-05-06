@@ -15,7 +15,11 @@ int main() {
     refresh();
 
     // Do ncurses window stuff here
-    printw("This is printed in the ncurses window");
+    WINDOW * win = newwin(24, 50, 0, 0);
+    refresh();
+    box(win, 0, 0);
+    mvwprintw(win, 12, 10, "This is printed in the ncurses window");
+    wrefresh(win);
 
     // Refresh the ncurses window
     refresh();
@@ -25,10 +29,19 @@ int main() {
 
     // End ncurses
     endwin();
+    int x;
     
     std::cout << "This is printed in the console terminal 2" << std::endl;
+    std::cin >> x;
     std::cout << "This is printed in the console terminal 3" << std::endl;
+    
+    system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
+    system("./monsterGame");
+    
     std::cout << "This is printed in the console terminal 4" << std::endl;
+    
+    system("g++ cook_v1.cpp -lncurses -o cooking");
+    system("./cooking");
 
     return 0;
 }

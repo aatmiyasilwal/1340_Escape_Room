@@ -82,6 +82,7 @@ int main(int argc, char ** argv) {
                     
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     char command;
+    int game;
     
     do {
         command = player -> display();
@@ -92,18 +93,18 @@ int main(int argc, char ** argv) {
         if (command == 'p') {
             if (yPos == 12 && xPos == 1) {
                 delayedText(win_text, 1, 10, "Loading Lockpicking");
-                system("g++ -o lockpicking lockpicking.cpp");
-                system("./lockpicking");
+                game = 1;
+                break;
             }
             else if (yPos == 7 && xPos == 25) {
                 delayedText(win_text, 1, 10, "Loading Memory");
-                system("g++ -o memory memory.cpp");
-                system("./memory");
+                game = 2;
+                break;
             }
             else if (yPos == 1 && xPos == 43) {
                 delayedText(win_text, 1, 10, "Loading Trivia");
-                system("g++ -o triviaReader triviaReader.cpp");
-                system("./triviaReader trivia3.txt TM.");    
+                game = 3;
+                break;
             }
             
             player->command = ' ';
@@ -116,5 +117,18 @@ int main(int argc, char ** argv) {
     
     getch();
     endwin();
+    
+    switch (game) {
+        case 1 :
+            system("g++ -o lockpicking lockpicking.cpp");
+            system("./lockpicking");
+        case 2 :
+            system("g++ -o memory memory.cpp");
+            system("./memory");
+        case 3 :
+            system("g++ -o triviaReader triviaReader.cpp");
+            system("./triviaReader trivia3.txt TM.");  
+    }
+    
     return 0;
 }
