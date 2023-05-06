@@ -110,9 +110,12 @@ int main(int argc, char ** argv) {
         case 1 :
             system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
             system("./monsterGame");
+            break;
+            
         case 2 :
             system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
             system("./triviaReader trivia2.txt LEY. room2.cpp");
+            break;
     }
     
     return 0;

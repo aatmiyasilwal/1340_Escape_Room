@@ -118,12 +118,17 @@ int main(int argc, char ** argv) {
         case 1 :
             system("g++ -std=c++11 main.cpp -o soltaire");
             system("./soltaire");
+            break;
+            
         case 2 :
             system("g++ -std=c++11 bettingGame.cpp -o bettingGame");
             system("./bettingGame");
+            break;
+            
         case 3 :
             system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
             system("./triviaReader trivia1.txt UN. room1.cpp");
+            break;
     }
     
     return 0;

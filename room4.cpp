@@ -107,9 +107,12 @@ int main(int argc, char ** argv) {
         case 1 :
             system("g++ cook_v1.cpp -lncurses -o cooking");
             system("./cooking");
+            break;
+            
         case 2 :
             system("g++ -o triviaReader triviaReader.cpp");
             system("./triviaReader trivia4.txt DER. room4.cpp");
+            break;
     }
     
     return 0;

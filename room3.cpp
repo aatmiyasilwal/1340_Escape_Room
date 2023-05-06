@@ -118,12 +118,17 @@ int main(int argc, char ** argv) {
         case 1 :
             system("g++ -o lockpicking lockpicking.cpp");
             system("./lockpicking");
+            break;
+            
         case 2 :
             system("g++ -o memory memory.cpp");
             system("./memory");
+            break;
+            
         case 3 :
             system("g++ -o triviaReader triviaReader.cpp");
             system("./triviaReader trivia3.txt TM. room3.cpp");
+            break;
     }
     
     return 0;
