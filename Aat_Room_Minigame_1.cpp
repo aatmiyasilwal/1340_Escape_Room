@@ -36,6 +36,14 @@ int player_row = 0, player_col = 0;
 int trigger_count = 0, coin_count = 0;
 
 
+void printq(string s){
+    for (char c : s) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(30)); // adjust delay time here
+    }
+    cout << endl;
+}
+
 //function that makes the board in vector form
 vector<vector<string> > initialise_board() {
     vector<vector<string> > board(5, vector<string>(8, blank_char));
@@ -211,6 +219,28 @@ int main() {
         monster_activate = false;
         perk_purchased = false;
         win_lose = false;
+
+        system("clear");
+        this_thread::sleep_for(chrono::seconds(5));
+        printq("Welcome to the game. You are seeking a treasure in a dungeon.");
+        printq("But there's a twist: a monster's protecting the treasure! ");
+        this_thread::sleep_for(chrono::seconds(1));
+        printq("Your task is to find the treasure without being killed by the monster.");
+        printq("The controls for the game are really simple!");
+        this_thread::sleep_for(chrono::seconds(1));
+        cout << endl;
+        printq("Enter W to move upwards");
+        printq("Enter A to move to the left");
+        printq("Enter S to move downwards");
+        printq("Enter D to move to the right");
+        cout << endl;
+        this_thread::sleep_for(chrono::seconds(1));
+        printq("Note that there are no walls in this game. Meaning the rows and columns are cyclic!");
+        printq("There's also a special powerup waiting for you if you collect both coins!");
+        printq("The monster is initially sleeping, but if you land on one of his hidden traps, you will activate him.");
+        printq("After he is activated, he will move two steps at a time.");
+        printq("Good luck and try to get the treasure as fast as possible!");
+        this_thread::sleep_for(chrono::seconds(5));
         system("clear");
 
         vector<vector<string> > board = initialise_board();
