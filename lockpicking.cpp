@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -31,9 +32,20 @@ int main() {
     do {
         // Prompt user for a guess
         num_guesses++;
-        cout << "Guess #" << num_guesses << " (enter 4 digits seperated by a space): ";
+        string input;
+        cout << "Guess #" << num_guesses << " (enter 4 digits separated by a space): ";
+        getline(cin, input);
+        stringstream ss(input);
+        bool isInputValid = true;
         for (int i = 0; i < NUM_DIGITS; i++) {
-            cin >> guess[i];
+            if (!(ss >> guess[i])) {
+                isInputValid = false;
+                break;
+            }
+        }
+        if (!isInputValid) {
+            cout << "Invalid input. Please enter four digits separated by a space.\n";
+            continue;
         }
 
         // Check if the guess is correct
