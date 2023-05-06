@@ -49,37 +49,23 @@ string dishServed;
 //menu items
 string menu[5] = {"🍱", "🥗", "🍔", "🍛", "🍕"};
 map <string, vector<string> > recipe;
-//void add(vector<string> v, string ingredients[], int size) {
-//    for(int i=0; i<size; i++) {
-//        v.push_back(ingredients[i]);
-//    }
-//}
-
 
 bool same_item(vector<string> v1, vector<string> v2); //compare two vectors
 
 //Initial duration
 int duration = 90, countdown = 90;
-//clock_t start_time = clock();
-//void timeRemain(clock_t start_time, int& countdown) {
-//    clock_t current_time = clock();
-//    int timeElasped = (current_time - start_time) / CLOCKS_PER_SEC;
-//    countdown -= timeElasped;
-//}
 
 //map for obstacle/wall sensing - required for sprite.h
 map<pos, bool> obstacle;
 
 int orderCount = 0; // global variable for number of order completed
 
+void delayedText(WINDOW * win, int y, int x, string text);
+
 int main(int argc, char ** argv) {
     //initialize
     setlocale(LC_ALL, "");
     init();
-    
-    //start tracking time
-    struct timeval start_time, current_time;
-    gettimeofday(&start_time, NULL);
     
     //initialize menu - map item to ingredients
 //    recipe["🍔"] = {"🍞", "🧀", "🍖"};
@@ -156,6 +142,33 @@ int main(int argc, char ** argv) {
     mvwprintw(win_complete, 1, 1, "✔✔");
     wrefresh(win_complete);
     
+    //instructions
+    string i1 = "Use arrow keys to move";
+    string i2 = "To pick up items from 'PANTRY' move on top ";
+    string i3 = "of the item and press 'a'";
+    string i4 = "Picked items will appear in 'CART'";
+    string i5 = "To drop the items go to 'BIN' or 'ORDER' and";
+    string i6 = "press 'd'";
+    string i7 = "Complete 3 orders within 90 seconds to WIN!!";
+    string i8 = "Press ENTER to start the game";
+
+    delayedText(win_main, 3, 3, i1);
+    delayedText(win_main, 4, 3, i2);
+    delayedText(win_main, 5, 3, i3);
+    delayedText(win_main, 6, 3, i4);
+    delayedText(win_main, 7, 3, i5);
+    delayedText(win_main, 8, 3 , i6);
+    delayedText(win_main, 9, 3 , i7);
+    delayedText(win_main, 10, 3 , i8);
+    
+    int x;
+    do {
+    x = getch();
+    } while (x != 10);
+    wclear(win_main);
+    box(win_main, 0, 0);
+    wrefresh(win_main);
+    
     //new sprite for player
     sprite * player = new sprite(win_main, yPos, xPos, "😋", "", obstacle);
     player->item = " "; //no item picked initially
@@ -163,6 +176,10 @@ int main(int argc, char ** argv) {
     
     bool win = false;
     int t1; //for kitchen animation
+    
+    //start tracking time
+    struct timeval start_time, current_time;
+    gettimeofday(&start_time, NULL);
     
     do {
         char command = player -> display(); //move player, get command for pick/drop
@@ -263,10 +280,10 @@ int main(int argc, char ** argv) {
     wclear(win_main);
     box(win_main, 0, 0);
     if (win){
-        mvwprintw(win_main, height/2 - 1, width/2 - 12, "Mini Game COmpleted! The clue is 'WON'.");
+        mvwprintw(win_main, height/2 - 1, width/2 - 19, "Mini Game Completed! The clue is 'WON'");
         ofstream fout;
         fout.open("r4check.txt", ios::app);
-        fout << "Y";
+        fout << "Cook WON" << endl;
         fout.close();
     }
     mvwprintw(win_main, height/2, width/2 - 12, "PRESS ENTER TO CONTINUE");
@@ -314,4 +331,22 @@ bool same_item(vector<string> v1, vector<string> v2) {
     sort(sorted_v2.begin(), sorted_v2.end());
     
     return sorted_v1 == sorted_v2;
+}
+
+//delayed text for game animation
+void delayedText(WINDOW * win, int y, int x, string text) {
+    int yMax, xMax, cX = x, cY = y;
+    getmaxyx(win, yMax, xMax);
+    
+    for (int i=0; i<text.length(); i++) {
+        mvwaddch(win, cY, cX, text[i]);
+        wrefresh(win);
+        cX++;
+        napms(50);
+        if (i != 0 && i % (xMax-(2*x)-1) == 0) { // centralizing
+            cY++;
+            cX = x;
+        }
+        //implement clear window if reach yMax
+    }
 }
