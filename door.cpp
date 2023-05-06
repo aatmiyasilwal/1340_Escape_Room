@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
+#include <random>
+
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -22,6 +25,12 @@ int main(int argc, char *argv[])
         std::cout << "|  |         |      |" << std::endl;
         std::cout << "|__|_________|______|" << std::endl;
 
+        cout << endl << endl;
+
+        string str = password;
+        shuffle(str.begin(), str.end(), mt19937{random_device{}()});
+        cout << "The jumbled up clue for this door is: " << str << endl;
+
         std::cout << "Enter the password (6 characters): ";
         std::cin >> input;
 
@@ -36,9 +45,24 @@ int main(int argc, char *argv[])
         {
             unlocked = true;
             std::cout << "The knob turns and the door opens!" << std::endl;
+
             ofstream fout;
             fout.open("totalcheck.txt", ios::app);
-            fout << "Y";
+            if (password == "SHAZAM"){
+                fout << "Room1" << endl;
+            }
+            else if (password == "HARLEY"){
+                fout << "Room2" << endl;
+
+            }
+            else if (password == "BATMAN"){
+                fout << "Room3" << endl;
+
+            }
+            else if (password == "WONDER"){
+                fout << "Room4" << endl;
+            }
+
             fout.close();
             
             system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");

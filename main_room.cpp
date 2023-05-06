@@ -78,14 +78,30 @@ WINDOW* initWin(int height, int width, int startY, int startX) {
 }
 
 int main(int argc, char ** argv) {
-    ifstream fin;
-    fin.open("totalcheck.txt");
+    bool room1Complete = false, room2Complete = false, room3Complete = false, room4Complete = false;
     string check;
-    fin >> check;
-    if (check == "YYYY") {
-        //win
+    ifstream fin;
+    
+    fin.open("totalcheck.txt");
+    while(fin >> check){
+        if (check == "Room1"){
+            room1Complete = true;
+        }
+        else if (check == "Room2"){
+            room2Complete = true;
+        }
+        else if (check == "Room3"){
+            room3Complete = true;
+        }        
+        else if (check == "Room4"){
+            room4Complete = true;
+        }
     }
     fin.close();
+    
+    if (room1Complete && room2Complete && room3Complete && room4Complete){
+        //display you won and end the game
+    }
     
     setlocale(LC_ALL, "");
     init();
