@@ -99,7 +99,7 @@ int main(){
             cout<<"Will the next card be higher or lower? Enter "<<"h"<<" for higher or "<<"l"<<"for lower: ";
             char hl;
             cin>>hl;
-            while (hl!='h' || hl!='l'){
+            while (hl!='h' && hl!='l'){
                 cout<<"Invalid Input. Please try again";
                 cin>>hl;
             }
