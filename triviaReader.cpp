@@ -11,7 +11,7 @@
 #include <thread> // for sleep function
 using namespace std;
 
-
+//typewriter text implementation
 void printq(string s){
     for (char c : s) {
         cout << c << flush;
@@ -19,6 +19,8 @@ void printq(string s){
     }
     cout << endl;
 }
+
+//print a block at once
 void prints(vector<string>s){
      for (string c : s) {
         cout << c << flush;
@@ -27,6 +29,8 @@ void prints(vector<string>s){
     }
     cout << endl;
 }
+
+//taking in trivia files, reading them, diplaying them, and going back to main room if user finishes the game
 int main(int argc, char *argv[]) {
     system("clear");
     vector<string> questions;
