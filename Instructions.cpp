@@ -5,6 +5,8 @@
 #include <string>
 #include <unistd.h>
 using namespace std;
+
+//instructions file for the game
 int main() {
     system("clear");
     vector<string>instructions;
