@@ -11,9 +11,6 @@
 
 using namespace std;
 
-// DC comic book characters
-const vector<string> DC_CHARACTERS{"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
-
 // function to shuffle the DC comic book characters
 void shuffle_characters(vector<string>& characters)
 {
@@ -23,6 +20,14 @@ void shuffle_characters(vector<string>& characters)
 
 int main()
 {
+    // DC comic book characters
+    vector<string> DC_CHARACTERS;
+    string superheros[]={"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
+
+    int i;
+    for (i = 0; i < 8; i++) {
+        DC_CHARACTERS.push_back(superheros[i]);
+    }
     // Prompt user to pick the lock
     cout << "Welcome to the Memory mini game!\n\n";
     cout << "INSTRUCTIONS:\n";
