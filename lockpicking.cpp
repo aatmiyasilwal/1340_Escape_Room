@@ -9,6 +9,7 @@
 using namespace std;
 
 int main() {
+    system("clear");
     srand(time(NULL));
     const int NUM_DIGITS = 4;
     int combination[NUM_DIGITS];
@@ -89,7 +90,7 @@ int main() {
             fout.open("r3check.txt", ios::app);
             fout << "Lockpicking BA" << endl;
             fout.close();
-            this_thread::sleep_for(chrono::seconds(3));
+            this_thread::sleep_for(chrono::seconds(5));
 
         }
 

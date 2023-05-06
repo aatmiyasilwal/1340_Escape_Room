@@ -84,7 +84,6 @@ int main(int argc, char *argv[]) {
     for (int m = 0; m < 5; m ++){
         random_value = nums[m];
         printq(questions[random_value]);
-        cout << endl;
         printq("The options are: ");
         cout << endl;
 
@@ -100,6 +99,7 @@ int main(int argc, char *argv[]) {
             correct_answers++;
             if (correct_answers != 3){
                 printq("Onto the next question!");
+                cout << endl;
             }
         }
         else{

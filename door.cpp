@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -35,6 +36,11 @@ int main(int argc, char *argv[])
         {
             unlocked = true;
             std::cout << "The knob turns and the door opens!" << std::endl;
+            ofstream fout;
+            fout.open("totalcheck.txt", ios::app);
+            fout << "Y";
+            fout.close();
+            
             system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");
 	        system("./mainRoom");
         }

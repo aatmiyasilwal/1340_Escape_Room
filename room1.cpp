@@ -3,9 +3,9 @@
 #include <locale.h>
 #include <string>
 #include <map>
+#include <vector>
 #include "sprite.h"
 #include <fstream>
-
 
 using namespace std;
 
@@ -86,7 +86,7 @@ int main(int argc, char ** argv) {
     
     if(total_complete_count >= 3){
         system("g++ door.cpp -o door");
-        system("./door SUPERMAN");
+        system("./door SHAZAM");
         
     }
 
@@ -167,7 +167,7 @@ int main(int argc, char ** argv) {
             
         case 3 :
             system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-            system("./triviaReader trivia1.txt UN. room1.cpp");
+            system("./triviaReader trivia1.txt ZA. room1.cpp");
             break;
     }
     

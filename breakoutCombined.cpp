@@ -21,7 +21,7 @@ int main(){
 	foutTwo.close();
 	foutThree.close();
 	foutFour.close();
-	foutOverall();
+	foutOverall.close();
 
 //	system("g++ -std=c++11 welcomePage.cpp -o welcomePage");
 //	system("./welcomePage");

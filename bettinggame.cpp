@@ -12,7 +12,7 @@ using namespace std;
 void check(int sh,int sl,int rh,int rl,int &balance,int &bet){
     if(sh>sl){
         balance+=bet;
-        cout<<"You won.Your current balance is "<<balance<<endl; 
+        cout<<"You won.Your current balance is "<<balance<<endl;
     }
     else if(sh<sl){
         balance-=bet;
@@ -89,7 +89,7 @@ int main(){
     cout<<"You have $500. You have to bet and test your luck. Make the Balance $2000 to move onto the next game"<<endl;
     cout<<"You will have to bet if your card will be higher or lower than the dealer's card.\ndDepending on whether you win or lose, your balance will increase or decrease by the amount you bet.";
     cout<<"The suit rankings are mentioned below\n"<<"1. Diamonds ♦\n"<<"2. Hearts ♥\n"<<"3. Spades ♠\n"<<"4. Clubs ♣\n";
-    sleep(5);
+    sleep(2);
     while (true){
         string betting_amount;
         int bet;
@@ -134,11 +134,16 @@ int main(){
                 check(dealer_suit,player_suit,dealer_rank,player_rank,balance,bet);
             }
         }
+        else if (balance==0)
+        {
+            cout<<"You have run out of money. Reset game.";
+            balance=2000;
+        }
         else if(balance<bet){
             cout<<"You do not have enough balance"<<endl;
         }
         else if(balance>=2000){
-            cout<<"Game Completed. Here is Your clue: M,A,R";
+            cout<<"Game Completed. Here is Your clue: S,H";
             this_thread::sleep_for(chrono::seconds(3));
             ofstream fout;
             fout.open("r1check.txt", ios::app);
@@ -146,13 +151,10 @@ int main(){
             fout.close();
             break;
         }
-        else if (balance==0)
-        {
-            cout<<"You have run out of money. Reset game.";
-            balance=2000;
-        }
     }
-    system("g++ room1.cpp -lncurses -o room1");
-    system("./room1");    
     
+    system("g++ room1.cpp -lncurses -o room1");
+    system("./room1");
+    
+    return 0;
 }

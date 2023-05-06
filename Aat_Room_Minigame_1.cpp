@@ -27,7 +27,7 @@ bool gameOver = false;
 
 
 int monster_row, monster_col;
-int treasure_row, treasure_col; 
+int treasure_row, treasure_col;
 int trap1_row, trap1_col;
 int trap2_row, trap2_col;
 int coin1_row, coin1_col;
@@ -54,7 +54,7 @@ vector<vector<string> > initialise_board() {
 void displayBoard(vector<vector<string> >& board){
     if (monster_activate){
         board[monster_row][monster_col] = monster_char;
-    }  
+    }
     if (perk_purchased){
         board[treasure_row][treasure_col] = treasure_char;
     }
@@ -98,7 +98,7 @@ void monsterMove(vector<vector<string> >& board){
         }
         else{
             y_move = (-2) * (colDiff / abs(colDiff));
-        }     
+        }
     }
     board[monster_row][monster_col] = blank_char;
     monster_row = (5 + monster_row + y_move) % 5;
@@ -134,7 +134,7 @@ void characterAllocation(vector<vector<string> >& board){
         coin1_row = rand() % 3;
         coin2_row = rand() % 2 + 3;
         coin1_col = rand() % 4;
-        coin2_col = rand() % 4 + 4; 
+        coin2_col = rand() % 4 + 4;
         int coin_list[2][2] = {{coin1_row, coin1_col}, {coin2_row, coin2_col}};
         for (int i = 0; i < 2; i++) {
             int row = coin_list[i][0];
@@ -142,7 +142,7 @@ void characterAllocation(vector<vector<string> >& board){
             if (board[row][col] != blank_char || (row == 0 && col == 0) || (row == monster_row && col == monster_col) || row == trap1_row && col == trap1_col || row == trap2_row && col == trap2_col) {
                 check = false;
                 break;
-            } 
+            }
             else {
                 check = true;
             }
@@ -209,6 +209,7 @@ void movePlayer(vector<vector<string> >& board, string move){
 
 //main function
 int main() {
+    int count=0;
     while (true){
         coin_count = 0;
         trigger_count = 0;
@@ -221,27 +222,28 @@ int main() {
         win_lose = false;
 
         system("clear");
-        this_thread::sleep_for(chrono::seconds(5));
-        printq("Welcome to the game. You are seeking a treasure in a dungeon.");
-        printq("But there's a twist: a monster's protecting the treasure! ");
-        this_thread::sleep_for(chrono::seconds(1));
-        printq("Your task is to find the treasure without being killed by the monster.");
-        printq("The controls for the game are really simple!");
-        this_thread::sleep_for(chrono::seconds(1));
-        cout << endl;
-        printq("Enter W to move upwards");
-        printq("Enter A to move to the left");
-        printq("Enter S to move downwards");
-        printq("Enter D to move to the right");
-        cout << endl;
-        this_thread::sleep_for(chrono::seconds(1));
-        printq("Note that there are no walls in this game. Meaning the rows and columns are cyclic!");
-        printq("There's also a special powerup waiting for you if you collect both coins!");
-        printq("The monster is initially sleeping, but if you land on one of his hidden traps, you will activate him.");
-        printq("After he is activated, he will move two steps at a time.");
-        printq("Good luck and try to get the treasure as fast as possible!");
-        this_thread::sleep_for(chrono::seconds(5));
-        system("clear");
+        if (count==0) {
+            printq("Welcome to the game. You are seeking a treasure in a dungeon.");
+            printq("But there's a twist: a monster's protecting the treasure! ");
+            this_thread::sleep_for(chrono::seconds(1));
+            printq("Your task is to find the treasure without being killed by the monster.");
+            printq("The controls for the game are really simple!");
+            this_thread::sleep_for(chrono::seconds(1));
+            cout << endl;
+            printq("Enter W to move upwards");
+            printq("Enter A to move to the left");
+            printq("Enter S to move downwards");
+            printq("Enter D to move to the right");
+            cout << endl;
+            this_thread::sleep_for(chrono::seconds(1));
+            printq("Note that there are no walls in this game. Meaning the rows and columns are cyclic!");
+            printq("There's also a special powerup waiting for you if you collect both coins!");
+            printq("The monster is initially sleeping, but if you land on one of his hidden traps, you will activate him.");
+            printq("After he is activated, he will move two steps at a time.");
+            printq("Good luck and try to get the treasure as fast as possible!");
+            this_thread::sleep_for(chrono::seconds(5));
+            system("clear");
+        }
 
         vector<vector<string> > board = initialise_board();
         characterAllocation(board);
@@ -308,12 +310,13 @@ int main() {
             fout.close();
             system("g++ room2.cpp -lncurses -o room2");
             system("./room2");
-            break;        
+            break;
         }
         else{
             char userInput;
             cout << "Do you want to continue playing? (Y/N): " << endl;
             cin >> userInput;
+            count++;
             
             if (userInput == 'N' || userInput == 'n'){
                 //go back to the main room
