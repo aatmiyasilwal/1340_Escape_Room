@@ -35,7 +35,7 @@ int coin2_row, coin2_col;
 int player_row = 0, player_col = 0;
 int trigger_count = 0, coin_count = 0;
 
-
+//typewriter text
 void printq(string s){
     for (char c : s) {
         cout << c << flush;
