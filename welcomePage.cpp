@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//animated text for cover page
 int main() {
     system("clear");
     vector<string> message;
