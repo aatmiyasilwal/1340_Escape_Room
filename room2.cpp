@@ -122,7 +122,7 @@ int main(int argc, char ** argv) {
             system("./monsterGame");
         case 2 :
             system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-            system("./triviaReader trivia2.txt LEY.");
+            system("./triviaReader trivia2.txt LEY. room2.cpp");
     }
     
     return 0;

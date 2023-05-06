@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
     ofstream fout;
     string filename = argv[1];
     string clues = argv[2];
+    string source_file = argv[3];
     
     if(filename == "trivia1.txt"){
         out_file_name = "r1check.txt";
@@ -112,10 +113,18 @@ int main(int argc, char *argv[]) {
     if (correct_answers >= 3){
         cout << endl << "You successfully passed the trivia round. The clues for this level are " << clues << endl;
         fout << "Y";
+        string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
+        string last_run = "./" + source_file.substr(0,5);
+        system(system_running.c_str());
+        system(last_run.c_str());
         
     }
     else{
         cout << endl << "You couldn't finish the trivia round!" << endl;
+        string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
+        string last_run = "./" + source_file.substr(0,5);
+        system(system_running.c_str());
+        system(last_run.c_str());
     }
     fout.close();
 	return 0;

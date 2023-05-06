@@ -110,7 +110,7 @@ int main(int argc, char ** argv) {
             system("./cooking");
         case 2 :
             system("g++ -o triviaReader triviaReader.cpp");
-            system("./triviaReader trivia4.txt DER.");
+            system("./triviaReader trivia4.txt DER. room4.cpp");
     }
     
     return 0;

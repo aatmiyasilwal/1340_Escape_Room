@@ -135,7 +135,7 @@ int main(int argc, char ** argv) {
             system("./bettingGame");
         case 3 :
             system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
-            system("./triviaReader trivia1.txt UN.");
+            system("./triviaReader trivia1.txt UN. room1.cpp");
     }
     
     return 0;
