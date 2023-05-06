@@ -23,6 +23,7 @@ bool checkWin(vector<vector<Card> > f) {
     return true;
 }
 
+//displaying main screen
 int main() {
     system("clear");
     cout <<  "*******************************************************" << endl;
