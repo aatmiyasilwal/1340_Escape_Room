@@ -99,6 +99,10 @@ int main(){
             cout<<"Will the next card be higher or lower? Enter "<<"h"<<" for higher or "<<"l"<<"for lower: ";
             char hl;
             cin>>hl;
+            while (hl!='h' || hl!='l'){
+                cout<<"Invalid Input. Please try again";
+                cin>>hl;
+            }
             int dealer_rank=card_rank();
             int dealer_suit=card_suit();
             cout<<"Dealer's Card"<<endl;
