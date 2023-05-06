@@ -5,6 +5,8 @@
 #include <iomanip>
 #include<unistd.h>
 #include <fstream>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 void check(int sh,int sl,int rh,int rl,int &balance,int &bet){
@@ -69,6 +71,7 @@ void print_card(int rank,int suit) {
 }
 
 int main(){
+    system("clear");
     int balance=500;
     int bet;
     cout<<"| |  | |(_)       | |                          | |"<<endl;
@@ -88,8 +91,25 @@ int main(){
     cout<<"The suit rankings are mentioned below\n"<<"1. Diamonds ♦\n"<<"2. Hearts ♥\n"<<"3. Spades ♠\n"<<"4. Clubs ♣\n";
     sleep(5);
     while (true){
-        cout<<"How much would you like to bet? ";
-        cin>>bet;
+        string betting_amount;
+        int bet;
+        while (true){
+            cout << "How much would you like to bet? ";
+            cin >> betting_amount;
+            try{
+                bet = stoi(betting_amount);
+                if (bet < 0){
+                    cout << "Invalid input. Please enter a positive integer: " << endl;
+                }
+                else{
+                    break;
+                }
+            }
+            catch (const invalid_argument& ex) {
+                cout << "Invalid input. Please enter an integer: " << endl;
+            }
+        }
+
         if (balance>=bet){
             srand(time(NULL));
             int player_rank=card_rank();
@@ -119,9 +139,10 @@ int main(){
         }
         else if(balance>=2000){
             cout<<"Game Completed. Here is Your clue: M,A,R";
+            this_thread::sleep_for(chrono::seconds(3));
             ofstream fout;
             fout.open("r1check.txt", ios::app);
-            fout << "Y";
+            fout << "Betting MAR" << endl;
             fout.close();
             break;
         }
@@ -130,9 +151,8 @@ int main(){
             cout<<"You have run out of money. Reset game.";
             balance=2000;
         }
-        
-
     }
-    
+    system("g++ room1.cpp -lncurses -o room1");
+    system("./room1");    
     
 }

@@ -6,7 +6,9 @@
 #include "Card.cpp"
 #include "Deck.cpp"
 #include <fstream>
-
+#include <chrono>
+#include <thread>
+using namespace std;
 
 bool checkWin(vector<vector<Card> > f) {
 	int i =0;
@@ -351,12 +353,15 @@ int main() {
 	}
 
 	cout << "---------------" << endl;
-	cout << " YOU WIN! You have unlocked the Letters S,P,E" << endl;
+	cout << "YOU WIN! You have unlocked the Letters S,P,E" << endl;
+    this_thread::sleep_for(chrono::seconds(3));
     ofstream fout;
     fout.open("r1check.txt", ios::app);
-    fout << "Y";
+    fout << "Solitaire SPE" << endl;
     fout.close();
 	cout << "---------------" << endl;
+	system("g++ room1.cpp -lncurses -o room1");
+    system("./room1");    
 	return 0;
 	
 }
