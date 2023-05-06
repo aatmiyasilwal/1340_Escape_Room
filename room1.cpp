@@ -15,12 +15,14 @@ const int h_tBox = 5;
 
 int yPos = height/2, xPos = 1;
 
+//initailize ncurses basics
 void init() {
     initscr();
     cbreak();
     noecho();
 }
 
+//display test in a delayed manner
 void delayedText(WINDOW * win, int y, int x, string text) {
     int yMax, xMax, cX = x, cY = y;
     getmaxyx(win, yMax, xMax);
@@ -48,6 +50,7 @@ WINDOW* initWin(int height, int width, int startY, int startX) {
     return win;
 }
 
+//drawing obstacles into the window
 void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
     for (int i=0; i<size; i++) {
         mvwaddch(win, posArr[i].yLoc, posArr[i].xLoc, shape);
@@ -182,7 +185,7 @@ int main(int argc, char ** argv) {
     } while (player->getmv() != 'q');
     
     endwin();
-    
+    //checking which file to redirect to
     switch (game) {
         case 1 :
             system("g++ -pedantic-errors -std=c++11 main.cpp -o soltaire");
