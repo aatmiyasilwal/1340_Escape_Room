@@ -44,7 +44,7 @@ void delayedText(WINDOW * win, int y, int x, string text) {
 }
 
 map<pos, bool> obstacle;
-
+//reprinting the doors
 void reprint(WINDOW * r1, WINDOW * r2, WINDOW * r3, WINDOW * r4) {
     box(r1, 0, 0);
     mvwprintw(r1, 4, 19, "🚪");
@@ -63,12 +63,14 @@ void reprint(WINDOW * r1, WINDOW * r2, WINDOW * r3, WINDOW * r4) {
     wrefresh(r4);
 }
 
+//print intermediate text
 void printGo(WINDOW * win, int r) {
     wclear(win);
     box(win, 0, 0);
     delayedText(win, 2, 17, "Going to room");
 }
 
+//window implementation
 WINDOW* initWin(int height, int width, int startY, int startX) {
     WINDOW * win = newwin(height, width, startY ,startX);
     refresh();
