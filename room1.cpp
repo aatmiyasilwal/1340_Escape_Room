@@ -57,6 +57,7 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
 }
 
 int main(int argc, char ** argv) {
+
     setlocale(LC_ALL, "");
     init();
     

@@ -5,6 +5,8 @@
 #include <ctime>
 #include <cstring>
 #include <fstream>
+#include <chrono>
+#include <thread>
 using namespace std;
 
 
@@ -32,6 +34,7 @@ int coin1_row, coin1_col;
 int coin2_row, coin2_col;
 int player_row = 0, player_col = 0;
 int trigger_count = 0, coin_count = 0;
+
 
 //function that makes the board in vector form
 vector<vector<string> > initialise_board() {
@@ -158,7 +161,7 @@ bool end_check(vector<vector<string> >& board){
         system("clear");
         displayBoard(board);
         cout << "You finished Minigame 1! The clue to the key is HAR." << endl;
-        sleep(3);
+        this_thread::sleep_for(chrono::seconds(3));
         win_lose = true;
         return true;
     }
@@ -166,6 +169,8 @@ bool end_check(vector<vector<string> >& board){
         system("cls");
         displayBoard(board);
         cout << "You were devoured! Try again!" << endl;
+        this_thread::sleep_for(chrono::seconds(3));
+
         win_lose = false;
         return true;
     }
@@ -269,7 +274,7 @@ int main() {
         if (win_lose){
             ofstream fout;
             fout.open("r2check.txt", ios::app);
-            fout << "Y";
+            fout << "Monster HAR" << endl;
             fout.close();
             system("g++ room2.cpp -lncurses -o room2");
             system("./room2");

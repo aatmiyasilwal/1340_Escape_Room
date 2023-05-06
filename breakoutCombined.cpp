@@ -15,11 +15,13 @@ int main(){
 	ofstream foutTwo("r2check.txt", ios::trunc);
 	ofstream foutThree("r3check.txt", ios::trunc);
 	ofstream foutFour("r4check.txt", ios::trunc);
+	ofstream foutOverall("totalcheck.txt", ios::trunc);
 
 	foutOne.close();
 	foutTwo.close();
 	foutThree.close();
-	foutFour.close();	
+	foutFour.close();
+	foutOverall();
 
 //	system("g++ -std=c++11 welcomePage.cpp -o welcomePage");
 //	system("./welcomePage");

@@ -56,6 +56,32 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
 }
 
 int main(int argc, char ** argv) {
+    vector<string> cluesr2;
+    ifstream fin;
+    fin.open("r2check.txt");
+    int total_complete_count = 0;
+    string word_in_check, other_word;
+
+    while (fin >> word_in_check){
+        if (word_in_check == "Monster"){
+            fin >> other_word;
+            cluesr2.push_back(other_word);
+            total_complete_count++;
+        }
+
+        else if (word_in_check == "Trivia"){
+            fin >> other_word;
+            cluesr2.push_back(other_word);
+            total_complete_count++;
+        }
+    }
+    fin.close();
+    if(total_complete_count >= 2){
+        system("g++ door.cpp -o door");
+        system("./door HARLEY")
+
+    }
+    
     setlocale(LC_ALL, "");
     init();
     
@@ -117,6 +143,3 @@ int main(int argc, char ** argv) {
             system("./triviaReader trivia2.txt LEY. room2.cpp");
             break;
     }
-    
-    return 0;
-}

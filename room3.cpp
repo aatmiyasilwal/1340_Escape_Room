@@ -5,6 +5,7 @@
 #include <map>
 #include "sprite.h"
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -56,6 +57,36 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
 }
 
 int main(int argc, char ** argv) {
+    vector<string> cluesr3;
+    ifstream fin;
+    fin.open("r3check.txt");
+    int total_complete_count = 0;
+    string word_in_check, other_word;
+
+    while (fin >> word_in_check){
+        if (word_in_check == "Memory"){
+            fin >> other_word;
+            cluesr3.push_back(other_word);
+            total_complete_count++;
+        }
+        else if (word_in_check == "Lockpicking"){
+            fin >> other_word;
+            cluesr3.push_back(other_word);
+            total_complete_count++;
+        }
+        else if (word_in_check == "Trivia"){
+            fin >> other_word;
+            cluesr3.push_back(other_word);
+            total_complete_count++;
+        }
+    }
+    fin.close();
+    if(total_complete_count >= 3){
+        system("g++ door.cpp -o door");
+        system("./door BATMAN")
+
+    }
+
     setlocale(LC_ALL, "");
     init();
     

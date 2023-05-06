@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <thread>
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>  // for setw()
@@ -116,10 +117,12 @@ int main()
     // display the final game state
     cout << "Congratulations, you found all the matches in " << num_attempts << " attempts!" << endl;
     cout << "Your two letters are: A & N\n";
+
     ofstream fout;
     fout.open("r3check.txt", ios::app);
-    fout << "Y";
+    fout << "Memory AN" << endl;
     fout.close();
+    this_thread::sleep_for(chrono::seconds(3));
 
     return 0;
 }

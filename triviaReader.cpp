@@ -11,6 +11,7 @@
 #include <thread> // for sleep function
 using namespace std;
 
+
 void printq(string s){
     for (char c : s) {
         cout << c << flush;
@@ -112,7 +113,8 @@ int main(int argc, char *argv[]) {
     }
     if (correct_answers >= 3){
         cout << endl << "You successfully passed the trivia round. The clues for this level are " << clues << endl;
-        fout << "Y";
+        this_thread::sleep_for(chrono::seconds(3));
+        fout << "Trivia " << clues << endl;  
         string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
         string last_run = "./" + source_file.substr(0,5);
         system(system_running.c_str());
@@ -121,6 +123,7 @@ int main(int argc, char *argv[]) {
     }
     else{
         cout << endl << "You couldn't finish the trivia round!" << endl;
+        this_thread::sleep_for(chrono::seconds(3));
         string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
         string last_run = "./" + source_file.substr(0,5);
         system(system_running.c_str());

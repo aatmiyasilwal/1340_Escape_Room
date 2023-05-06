@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
         if (input.length() != 6)
         {
             std::cout << "Password must be 6 characters long!" << std::endl;
+
             continue;
         }
 
@@ -34,6 +35,8 @@ int main(int argc, char *argv[])
         {
             unlocked = true;
             std::cout << "The knob turns and the door opens!" << std::endl;
+            system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");
+	        system("./mainRoom");
         }
         else
         {

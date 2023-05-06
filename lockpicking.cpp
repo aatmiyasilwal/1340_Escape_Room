@@ -3,6 +3,8 @@
 #include <ctime>
 #include <fstream>
 #include <sstream>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -85,11 +87,15 @@ int main() {
             cout << "Your two letters are: B & A\n";
             ofstream fout;
             fout.open("r3check.txt", ios::app);
-            fout << "Y";
+            fout << "Lockpicking BA" << endl;
             fout.close();
+            this_thread::sleep_for(chrono::seconds(3));
+
         }
 
     } while (!isGuessCorrect);
-
+    
+    system("g++ room3.cpp -lncurses -o room3");
+    system("./room3");
     return 0;
 }
