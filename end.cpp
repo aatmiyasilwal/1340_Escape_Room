@@ -6,6 +6,7 @@
 #include <unistd.h>
 using namespace std;
 
+//output file that shows animated ascii files
 int main() {
     vector<string> message;
     #include <iostream>
