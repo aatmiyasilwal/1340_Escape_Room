@@ -106,7 +106,7 @@ int main(int argc, char ** argv) {
     }
     fin.close();
     if(monsterBool && triviaBool){
-        system("g++ door.cpp -o door");
+        system("g++ -pedantic-errors -std=c++11 door.cpp -o door");
         system("./door HARLEY");
         
     }
@@ -168,12 +168,12 @@ int main(int argc, char ** argv) {
     
     switch (game) {
         case 1 :
-            system("g++ -std=c++11 Aat_Room_Minigame_1.cpp -o monsterGame");
+            system("g++ -pedantic-errors -std=c++11 Aat_Room_Minigame_1.cpp -o monsterGame");
             system("./monsterGame");
             break;
             
         case 2 :
-            system("g++ -std=c++11 triviaReader.cpp -o triviaReader");
+            system("g++ -pedantic-errors -std=c++11 triviaReader.cpp -o triviaReader");
             system("./triviaReader trivia2.txt LEY. room2.cpp");
             break;
     }

@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
         cout << endl << "You successfully passed the trivia round. The clues for this level are " << clues << endl;
         this_thread::sleep_for(chrono::seconds(3));
         fout << "Trivia " << clues << endl;  
-        string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
+        string system_running = "g++ -pedantic-errors -std=c++11 " + source_file + " -lncursesw -o room" + source_file.substr(4,1);
         string last_run = "./" + source_file.substr(0,5);
         system(system_running.c_str());
         system(last_run.c_str());
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
     else{
         cout << endl << "You couldn't finish the trivia round!" << endl;
         this_thread::sleep_for(chrono::seconds(3));
-        string system_running = "g++ " + source_file + " -lncurses -o room" + source_file.substr(4,1);
+        string system_running = "g++ -pedantic-errors -std=c++11 " + source_file + " -lncursesw -o room" + source_file.substr(4,1);
         string last_run = "./" + source_file.substr(0,5);
         system(system_running.c_str());
         system(last_run.c_str());

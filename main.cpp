@@ -362,7 +362,7 @@ int main() {
     fout << "Solitaire SPE" << endl;
     fout.close();
     cout << "---------------" << endl;
-    system("g++ room1.cpp -lncurses -o room1");
+    system("g++ -pedantic-errors -std=c++11 room1.cpp -lncursesw -o room1");
     system("./room1");
     return 0;
     

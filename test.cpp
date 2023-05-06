@@ -35,12 +35,12 @@ int main() {
     std::cin >> x;
     std::cout << "This is printed in the console terminal 3" << std::endl;
     
-    system("g++ -o monsterGame Aat_Room_Minigame_1.cpp");
+    system("g++ -pedantic-errors -std=c++11 Aat_Room_Minigame_1.cpp -o monsterGame");
     system("./monsterGame");
     
     std::cout << "This is printed in the console terminal 4" << std::endl;
     
-    system("g++ cook_v1.cpp -lncurses -o cooking");
+    system("g++ -pedantic-errors -std=c++11 cook_v1.cpp -lncursesw -o cooking");
     system("./cooking");
 
     return 0;

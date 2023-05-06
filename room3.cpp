@@ -110,7 +110,7 @@ int main(int argc, char ** argv) {
     }
     fin.close();
     if(memoryBool && lootBool && triviaBool){
-        system("g++ door.cpp -o door");
+        system("g++ -pedantic-errors -std=c++11 door.cpp -o door");
         system("./door BATMAN");
 
     }
@@ -182,17 +182,17 @@ int main(int argc, char ** argv) {
     
     switch (game) {
         case 1 :
-            system("g++ -o lockpicking lockpicking.cpp");
+            system("g++ -pedantic-errors -std=c++11 lockpicking.cpp -o lockpicking");
             system("./lockpicking");
             break;
             
         case 2 :
-            system("g++ -o memory memory.cpp");
+            system("g++ -pedantic-errors -std==c++11 memory.cpp -o memory");
             system("./memory");
             break;
             
         case 3 :
-            system("g++ -o triviaReader triviaReader.cpp");
+            system("g++ -pedantic-errors -std=c++11 triviaReader.cpp -o triviaReader");
             system("./triviaReader trivia3.txt TM. room3.cpp");
             break;
     }

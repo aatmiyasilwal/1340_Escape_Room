@@ -96,7 +96,7 @@ int main() {
 
     } while (!isGuessCorrect);
     
-    system("g++ room3.cpp -lncurses -o room3");
+    system("g++ -pedantic-errors -std=c++11 room3.cpp -lncursesw -o room3");
     system("./room3");
     return 0;
 }

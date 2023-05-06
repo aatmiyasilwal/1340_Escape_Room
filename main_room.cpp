@@ -359,22 +359,22 @@ int main(int argc, char ** argv) {
     switch (complete)
     {
         case 1:
-            system("g++ room1.cpp -lncurses -o room1");
+            system("g++ -pedantic-errors -std=c++11 room1.cpp -lncursesw -o room1");
             system("./room1");
             break;
 
         case 2:
-            system("g++ room2.cpp -lncurses -o room2");
+            system("g++ -pedantic-errors -std=c++11 room2.cpp -lncursesw -o room2");
             system("./room2");
             break;
             
         case 3:
-            system("g++ room3.cpp -lncurses -o room3");
+            system("g++ -pedantic-errors -std=c++11 room3.cpp -lncursesw -o room3");
             system("./room3");
             break;
            
         case 4:
-            system("g++ room4.cpp -lncurses -o room4");
+            system("g++ -pedantic-errors -std=c++11 room4.cpp -lncursesw -o room4");
             system("./room4");
             break;
     }
