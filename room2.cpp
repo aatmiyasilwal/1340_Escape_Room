@@ -15,11 +15,14 @@ const int h_tBox = 5;
 
 int yPos = height/2, xPos = 1;
 
+//inisializeing ncurses basics
 void init() {
     initscr();
     cbreak();
     noecho();
 }
+
+//displaying text in a delayed manner
 
 void delayedText(WINDOW * win, int y, int x, string text) {
     int yMax, xMax, cX = x, cY = y;
@@ -39,7 +42,7 @@ void delayedText(WINDOW * win, int y, int x, string text) {
 }
 
 map<pos, bool> obstacle;
-
+//refreshinng windows
 WINDOW* initWin(int height, int width, int startY, int startX) {
     WINDOW * win = newwin(height, width, startY ,startX);
     refresh();
@@ -56,6 +59,7 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
     }
 }
 
+//implemntation of room functionality like door
 int main(int argc, char ** argv) {
     
     //shut down
