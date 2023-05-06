@@ -9,6 +9,7 @@
 using namespace std;
 
 int main() {
+    system("clear");
     vector<string> message;
     message.push_back("| ___ \\              | |             | |  ");
     message.push_back("| |_/ /_ __ ___  __ _| | _____  _   _| |_ ");
@@ -19,7 +20,7 @@ int main() {
     for (int i = 0; i < 5; i++) {
         for (char c : message[i]) {
             cout << c << flush;
-            this_thread::sleep_for(chrono::milliseconds(30)); // adjust delay time here
+            this_thread::sleep_for(chrono::milliseconds(15)); // adjust delay time here
         }
         cout << endl;
     }

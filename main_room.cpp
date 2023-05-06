@@ -92,24 +92,27 @@ int main(int argc, char ** argv) {
         }
         else if (check == "Room3"){
             room3Complete = true;
-        }        
+        }
         else if (check == "Room4"){
             room4Complete = true;
         }
     }
     fin.close();
     
-    if (room1Complete && room2Complete && room3Complete && room4Complete){
-        //display you won and end the game
-    }
-    
     setlocale(LC_ALL, "");
     init();
     
     WINDOW * win_main = initWin(height, width, 0 ,0);
     WINDOW * win_text = initWin(h_tBox, width, height-1 ,0);
+    
+    if (room1Complete && room2Complete && room3Complete && room4Complete){
+        mvwprintw(win_main, height/2, 18, "CONGRATULATIONS YOU WIN!!");
+        wrefresh(win_main);
+        napms(5000);
+        return 0;
+    }
+    
     WINDOW * door = initWin(h_door, w_door, height/2 - h_door/2, width-1);
-
     
     WINDOW * r1 = initWin(h_r1, w_r1, 0, 0);
     mvwprintw(r1, 4, 19, "🚪");
@@ -129,6 +132,15 @@ int main(int argc, char ** argv) {
     
     //locks and keys
     string lock[4] = {"🔒","🔒","🔒","🔒"};
+    if (room1Complete)
+        lock[0] = "🔑";
+    if (room2Complete)
+        lock[1] = "🔑";
+    if (room3Complete)
+        lock[2] = "🔑";
+    if (room4Complete)
+        lock[3] = "🔑";
+    
     for (int i=1; i<h_door-1; i++) {
         mvwprintw(door, i, 1, lock[i-1].c_str());
     }
@@ -214,19 +226,26 @@ int main(int argc, char ** argv) {
             if (yPos == 5 && (xPos>=17 && xPos<=21)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 2, 15, "Go into Room 1? (y for 'yes' or keep moving) ");
-                char ans = getch();
-
-                //go into room 1
-                if (ans == 'y') {
-                    printGo(win_text, 3);
-                    complete = 1;
-                    break;
+                if (!room1Complete) {
+                    delayedText(win_text, 2, 15, "Go into Room 1? (y for 'yes' or keep moving) ");
+                    char ans = getch();
+                    
+                    //go into room 1
+                    
+                    if (ans == 'y') {
+                        printGo(win_text, 3);
+                        complete = 1;
+                        break;
+                    }
+                    else {
+                        player -> display();
+                        wclear(win_text);
+                        box(win_text, 0, 0);
+                        wrefresh(win_text);
+                    }
                 }
                 else {
-                    player -> display();
-                    wclear(win_text);
-                    box(win_text, 0, 0);
+                    mvwprintw(win_text, 1, 13, "You have already completed Room 1.");
                     wrefresh(win_text);
                 }
             }
@@ -235,19 +254,25 @@ int main(int argc, char ** argv) {
             if (yPos == 6 && (xPos>=45 && xPos<=49)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 2, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
-                char ans = getch();
-
-                //go into room 2
-                if (ans == 'y') {
-                    printGo(win_text, 2);
-                    complete = 2;
-                    break;
+                if (!room2Complete) {
+                    delayedText(win_text, 2, 15, "Go into Room 2? (y for 'yes' or keep moving) ");
+                    char ans = getch();
+                    
+                    //go into room 2
+                    if (ans == 'y') {
+                        printGo(win_text, 2);
+                        complete = 2;
+                        break;
+                    }
+                    else {
+                        player -> display();
+                        wclear(win_text);
+                        box(win_text, 0, 0);
+                        wrefresh(win_text);
+                    }
                 }
                 else {
-                    player -> display();
-                    wclear(win_text);
-                    box(win_text, 0, 0);
+                    mvwprintw(win_text, 1, 13, "You have already completed Room 2.");
                     wrefresh(win_text);
                 }
             }
@@ -256,19 +281,25 @@ int main(int argc, char ** argv) {
             if (yPos == 9 && (xPos>=13 && xPos<=17)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 2, 15, "Go into Room 3? (y for 'yes' or keep moving) ");
-                char ans = getch();
-
-                //go into room 3
-                if (ans == 'y') {
-                    printGo(win_text, 3);
-                    complete = 3;
-                    break;
+                if (!room3Complete) {
+                    delayedText(win_text, 2, 15, "Go into Room 3? (y for 'yes' or keep moving) ");
+                    char ans = getch();
+                    
+                    //go into room 3
+                    if (ans == 'y') {
+                        printGo(win_text, 3);
+                        complete = 3;
+                        break;
+                    }
+                    else {
+                        player -> display();
+                        wclear(win_text);
+                        box(win_text, 0, 0);
+                        wrefresh(win_text);
+                    }
                 }
                 else {
-                    player -> display();
-                    wclear(win_text);
-                    box(win_text, 0, 0);
+                    mvwprintw(win_text, 1, 13, "You have already completed Room 3.");
                     wrefresh(win_text);
                 }
             }
@@ -277,31 +308,31 @@ int main(int argc, char ** argv) {
             if (yPos == 12 && (xPos>=49 && xPos<=53)) {
                 wclear(win_text);
                 box(win_text, 0, 0);
-                delayedText(win_text, 2, 15, "Go into Room 4? (y for 'yes' or keep moving) ");
-                char ans = getch();
-
-                //go into room 1
-                if (ans == 'y') {
-                    printGo(win_text, 4);
-                    complete = 4;
-                    break;
+                if (!room4Complete) {
+                    delayedText(win_text, 2, 15, "Go into Room 4? (y for 'yes' or keep moving) ");
+                    char ans = getch();
+                    
+                    //go into room 1
+                    if (ans == 'y') {
+                        printGo(win_text, 4);
+                        complete = 4;
+                        break;
+                    }
+                    else {
+                        player -> display();
+                        wclear(win_text);
+                        box(win_text, 0, 0);
+                        wrefresh(win_text);
+                    }
                 }
                 else {
-                    player -> display();
-                    wclear(win_text);
-                    box(win_text, 0, 0);
+                    mvwprintw(win_text, 1, 13, "You have already completed Room 4.");
                     wrefresh(win_text);
                 }
             }
             
-//            if (complete>=1 && complete<=4) {
-//                lock[complete-1] = "🔑";
-//                for (int i=1; i<h_door-1; i++) {
-//                    mvwprintw(door, i, 1, lock[i-1].c_str());
-//                }
-//                wrefresh(door);
-//                counter++;
-//
+            
+
 //                if (counter == 4) {
 //                    napms(1000);
 //                    wclear(win_text);

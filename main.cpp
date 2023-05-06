@@ -155,7 +155,6 @@ int main() {
     int step = 1;
     
     while (checkWin(foundation) != true) {
-
         int tmax = 0;
         for (int i = 0; i < table.size(); i++) {
             if (table[i].size() > tmax) {

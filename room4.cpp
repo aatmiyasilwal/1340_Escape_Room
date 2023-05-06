@@ -57,7 +57,34 @@ void drawObstacle(WINDOW * win, pos posArr[], int size, char shape) {
 }
 
 int main(int argc, char ** argv) {
+    
+    //shut down
+    bool room1Complete = false, room2Complete = false, room3Complete = false, room4Complete = false;
+    string check;
+    ifstream Fin;
+    
+    Fin.open("totalcheck.txt");
+    while(Fin >> check){
+        if (check == "Room1"){
+            room1Complete = true;
+        }
+        else if (check == "Room2"){
+            room2Complete = true;
+        }
+        else if (check == "Room3"){
+            room3Complete = true;
+        }
+        else if (check == "Room4"){
+            room4Complete = true;
+        }
+    }
+    Fin.close();
 
+    if (room1Complete && room2Complete && room3Complete && room4Complete){
+        return 0;
+    }
+    
+    bool cookBool = false, triviaBool = false;
     vector<string> cluesr4;
     ifstream fin;
     fin.open("r4check.txt");
@@ -68,17 +95,17 @@ int main(int argc, char ** argv) {
         if (word_in_check == "Cook"){
             fin >> other_word;
             cluesr4.push_back(other_word);
-            total_complete_count++;
+            cookBool = true;
         }
 
         else if (word_in_check == "Trivia"){
             fin >> other_word;
             cluesr4.push_back(other_word);
-            total_complete_count++;
+            triviaBool = true;
         }
     }
     fin.close();
-    if(total_complete_count >= 2){
+    if(cookBool && triviaBool){
         system("g++ door.cpp -o door");
         system("./door WONDER");
 

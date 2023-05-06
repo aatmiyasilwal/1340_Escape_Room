@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         cout << endl << endl;
 
         string str = password;
-        shuffle(str.begin(), str.end(), mt19937{random_device{}()});
+        random_shuffle(str.begin(), str.end());
         cout << "The jumbled up clue for this door is: " << str << endl;
 
         std::cout << "Enter the password (6 characters): ";
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
             fout.close();
             
             system("g++ -std=c++11 main_room.cpp -lncurses -o mainRoom");
-	        system("./mainRoom");
+            system("./mainRoom");
         }
         else
         {

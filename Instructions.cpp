@@ -6,6 +6,7 @@
 #include <unistd.h>
 using namespace std;
 int main() {
+    system("clear");
     vector<string>instructions;
     instructions.push_back("Welcome to BREAKOUT!!\n\n");
     instructions.push_back("INSTRUCTIONS:\n");
