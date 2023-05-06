@@ -88,6 +88,21 @@ int main()
         {
             cout << "Enter two card numbers to flip (0-" << NUM_CARDS - 1 << "): ";
             cin >> card1 >> card2;
+            
+            if (card1 == card2) {
+                cout << "Please enter two different card numbers." << endl;
+                continue;
+            }
+
+            if (card1 < 0 || card1 >= NUM_CARDS || card2 < 0 || card2 >= NUM_CARDS) {
+                cout << "Invalid input. Please enter two card numbers between 0 and " << NUM_CARDS - 1 << "." << endl;
+                continue;
+            }
+
+            if (card_flipped[card1] || card_flipped[card2]) {
+                cout << "Please enter two card numbers that have not been flipped yet." << endl;
+                continue;
+            }
 
             // flip the selected cards
             card_flipped[card1] = true;
