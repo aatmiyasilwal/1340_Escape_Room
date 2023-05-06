@@ -9,6 +9,8 @@
 #include <thread>
 
 using namespace std;
+
+//checking if won
 void check(int sh,int sl,int rh,int rl,int &balance,int &bet){
     if(sh>sl){
         balance+=bet;
@@ -33,6 +35,8 @@ void check(int sh,int sl,int rh,int rl,int &balance,int &bet){
     }
 
 }
+
+//generate random suit and rank
 int card_suit(){
     int suit;
     suit = (1 + (rand() % (int)(4)));
@@ -45,6 +49,7 @@ int card_rank(){
     return rank;
 }
 
+//displaying card
 void print_card(int rank,int suit) {
     string suit_symbol;
       switch (suit) {
@@ -70,6 +75,7 @@ void print_card(int rank,int suit) {
     cout<<endl;
 }
 
+//main file that makes game function
 int main(){
     system("clear");
     int balance=500;
