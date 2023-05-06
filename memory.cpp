@@ -21,6 +21,7 @@ void shuffle_characters(vector<string>& characters)
 
 int main()
 {
+    system("clear");
     // DC comic book characters
     vector<string> DC_CHARACTERS;
     string superheros[]={"Batman", "Superman", "Wonder Woman", "Flash", "Aquaman", "Green Lantern", "Cyborg", "Shazam"};
@@ -69,11 +70,11 @@ int main()
         {
             if (card_flipped[i])
             {
-                cout << setw(13) << left << game_board[i];  // set width to 13
+                cout << setw(15) << left << game_board[i];  // set width to 13
             }
             else
             {
-                cout << setw(13) << left << "X";  // set width to 13
+                cout << setw(15) << left << "X";  // set width to 13
             }
             if ((i + 1) % COLS == 0)
             {
@@ -93,7 +94,7 @@ int main()
             card_flipped[card2] = true;
 
             // display the selected cards
-            cout << setw(13) << left << game_board[card1] << setw(13) << left << game_board[card2] << endl;
+            cout << setw(15) << left << game_board[card1] << setw(15) << left << game_board[card2] << endl;
 
             // check for a match
             if (game_board[card1] == game_board[card2])
@@ -117,12 +118,12 @@ int main()
     // display the final game state
     cout << "Congratulations, you found all the matches in " << num_attempts << " attempts!" << endl;
     cout << "Your two letters are: A & N\n";
-
     ofstream fout;
     fout.open("r3check.txt", ios::app);
     fout << "Memory AN" << endl;
     fout.close();
     this_thread::sleep_for(chrono::seconds(3));
-
+    system("g++ room3.cpp -lncurses -o room3");
+    system("./room3");
     return 0;
 }
